@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluent Welding | Custom Fabrication & Tank Accessories</title>
+  <meta name="description" content="Fluent Welding provides AWS Certified welding, custom fabrication, tank accessories, sidewall nozzles, roof nozzles, and made-to-order welded products for industrial and commercial customers." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23151618%22/><path d=%22M17 45V18h30v7H25v5h18v7H25v8z%22 fill=%22%23e10047%22/></svg>">
+  <style>
+    :root{
+      --ink:#111316;--muted:#6e747b;--paper:#f4f3ef;--panel:#ffffff;--steel:#22262b;--line:#d9d6ce;--accent:#e10047;--accent2:#ff3a73;
+      --shadow:0 18px 50px rgba(0,0,0,.10);--radius:20px;--max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .topbar{background:#0e1012;color:#d7dade;font-size:13px}
+    .topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:9px 0}
+    .nav{position:sticky;top:0;z-index:30;background:rgba(244,243,239,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
+    .brand{display:flex;align-items:center;font-weight:900;letter-spacing:.02em}
+    .brand-logo{width:290px;max-height:72px;object-fit:contain}
+    .footer-logo{width:330px;max-width:100%;background:white;border-radius:8px;padding:4px}
+    .links{display:flex;align-items:center;gap:25px;font-size:14px;font-weight:750}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 18px;font-weight:850;border:1px solid transparent;transition:.2s ease;cursor:pointer}
+    .btn.primary{background:var(--accent);color:white}.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn.ghost{border-color:#383c42;background:transparent;color:white}.btn.ghost:hover{background:#262a2f}
+    .hero{background:
+      radial-gradient(circle at 85% 20%,rgba(225,0,71,.18),transparent 34%),
+      linear-gradient(135deg,#0f1113 0%,#1a1e22 58%,#252a30 100%);color:white;overflow:hidden}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:88px 0 86px}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;font-size:12px;text-transform:uppercase;letter-spacing:.18em;font-weight:900;color:var(--accent2)}
+    .eyebrow:before{content:"";width:34px;height:2px;background:var(--accent)}
+    h1{font-size:clamp(44px,6vw,82px);line-height:.98;letter-spacing:-.055em;margin:16px 0 20px;max-width:820px}
+    .hero p{font-size:19px;color:#c7cbd0;max-width:690px;margin:0 0 28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .heroCard{position:relative;min-height:475px;border-radius:30px;background:linear-gradient(145deg,#24282d,#121416);border:1px solid rgba(255,255,255,.1);box-shadow:0 34px 80px rgba(0,0,0,.28);overflow:hidden;display:grid;place-items:center;padding:38px}
+    .spark{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--accent2) 0 2%,var(--accent) 3%,rgba(225,0,71,.18) 24%,transparent 68%);right:-70px;top:-70px;filter:blur(1px)}
+    .hero-logo-wrap{position:relative;z-index:2;background:white;border-radius:16px;padding:14px;box-shadow:0 24px 55px rgba(0,0,0,.38);transform:rotate(-1deg)}
+    .hero-logo{width:100%;height:auto}
+    .hero-work{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fafaf8}
+    .heroCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,14,.02) 45%,rgba(10,12,14,.72) 100%);pointer-events:none}
+    .hero-mark{position:absolute;left:24px;right:24px;bottom:22px;z-index:4;display:flex;align-items:end;justify-content:space-between;gap:18px}
+    .hero-mark img{width:255px;max-width:62%;background:white;border-radius:10px;padding:5px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+    .hero-caption{text-align:right;color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+    .badge{position:absolute;left:24px;top:22px;z-index:3;background:rgba(13,15,17,.82);border:1px solid rgba(255,255,255,.11);border-radius:14px;padding:12px 14px;font-size:12px;color:#dfe2e4;backdrop-filter:blur(10px)}
+    .stats{background:white;border-bottom:1px solid var(--line)}
+    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .stat{padding:25px 22px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:18px}.stat span{font-size:13px;color:var(--muted)}
+    section{padding:82px 0}.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
+    .sectionHead h2{font-size:clamp(34px,4vw,54px);line-height:1.02;letter-spacing:-.045em;margin:7px 0 0}.sectionHead p{max-width:500px;color:var(--muted);margin:0}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 1px 0 rgba(255,255,255,.8)}
+    .icon{width:52px;height:52px;border-radius:14px;background:#17191c;color:var(--accent);display:grid;place-items:center;font-weight:950;margin-bottom:22px}
+    .card h3{font-size:21px;margin:0 0 8px}.card p{color:var(--muted);margin:0}
+    .certBand{margin-top:24px;border-radius:20px;background:#151719;color:white;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-left:5px solid var(--accent)}
+    .certBand strong{font-size:22px;display:block}.certBand span{color:#bbc0c5;font-size:14px}.certTag{white-space:nowrap;border:1px solid #3a3f45;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--accent2)}
+    .showcase{background:#e9e7e1}
+    .showcaseGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    .showcaseSide{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .workShot{background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    .workShot img{width:100%;height:300px;object-fit:contain;background:#fafaf8;padding:8px}
+    .workShot.large img{height:100%;min-height:618px}
+    .workCaption{padding:16px 18px 18px}.workCaption strong{display:block;font-size:17px}.workCaption span{color:var(--muted);font-size:13px}
+    .dark{background:#17191c;color:white}.dark .sectionHead p{color:#b7bbc0}
+    .product{border:1px solid #34383e;background:#202328;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+    .product:before{content:"";position:absolute;width:110px;height:110px;background:var(--accent);filter:blur(65px);opacity:.16;right:-10px;top:-10px}
+    .product .size{display:inline-block;color:var(--accent2);font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+    .product h3{font-size:25px;margin:9px 0 9px}.product p{color:#bfc3c7;margin:0 0 18px}.product ul{margin:0;padding-left:18px;color:#e3e5e7;font-size:14px}
+    .productThumb{margin:-6px -6px 16px;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.08);padding:10px;display:grid;place-items:center;min-height:185px}
+    .productThumb img{max-height:165px;width:auto;object-fit:contain}
+    .productGallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:-6px -6px 16px}
+    .productGallery .productThumb{margin:0;min-height:180px}
+    .productGallery .productThumb:first-child{grid-column:1/-1;min-height:215px}
+    .productGallery .productThumb:first-child img{max-height:195px}
+    .pillRow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+    .pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);font-size:12px;color:#d8dde1;font-weight:700}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{position:relative;padding:22px 18px 24px 0}.num{font-size:56px;font-weight:950;color:#d4d0c6;line-height:1}.step h3{margin:5px 0 7px}.step p{color:var(--muted);font-size:14px;margin:0}
+    .quote{background:linear-gradient(135deg,#ece9e1,#faf9f6)}
+    .quoteBox{display:grid;grid-template-columns:.85fr 1.15fr;background:white;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+    .quoteIntro{padding:40px;background:#151719;color:white}.quoteIntro h2{font-size:42px;line-height:1.02;letter-spacing:-.045em;margin:12px 0 16px}.quoteIntro p{color:#c2c6ca}.quoteIntro .mini{margin-top:30px;font-size:13px;color:#aab0b6}
+    form{padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.08em;color:#4e555c}
+    input,textarea,select{width:100%;margin-top:7px;border:1px solid #d4d6d8;border-radius:12px;padding:13px 14px;font:inherit;background:#fbfbfa}
+    textarea{min-height:126px;resize:vertical}.full{grid-column:1/-1}.formNote{font-size:12px;color:var(--muted);grid-column:1/-1}
+    footer{background:#0f1113;color:white;padding:42px 0 24px}.footerGrid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:30px}.footerGrid p,.footerGrid a{color:#aeb3b8;font-size:14px}.footerGrid h4{margin-top:0}.fine{border-top:1px solid #292d31;margin-top:30px;padding-top:20px;color:#777e85;font-size:12px}
+    .mobile{display:none}
+    @media (max-width:900px){
+      .links{display:none}.mobile{display:inline-flex}.hero .wrap,.quoteBox,.showcaseGrid{grid-template-columns:1fr}.heroCard{min-height:350px}.stats .wrap,.grid3,.grid2,.process{grid-template-columns:1fr 1fr}.footerGrid{grid-template-columns:1fr 1fr}.hero .wrap{padding:62px 0}.workShot.large img{min-height:420px}.certBand{align-items:flex-start}
+    }
+    @media (max-width:620px){
+      .wrap{width:min(100% - 28px,var(--max))}.topbar .wrap{justify-content:center}.topbar .wrap span:last-child{display:none}.stats .wrap,.grid3,.grid2,.process,.footerGrid,.showcaseSide{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.sectionHead{display:block}.heroCard{min-height:310px}.brand-logo{width:205px}.heroCard{min-height:280px;padding:28px}.hero-mark{left:14px;right:14px;bottom:14px}.hero-caption{display:none}.certBand{display:block}.certTag{display:inline-block;margin-top:14px}.workShot img,.workShot.large img{height:280px;min-height:0}form{grid-template-columns:1fr;padding:24px}.full{grid-column:auto}section{padding:64px 0}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="wrap"><span><strong>AWS Certified</strong> &nbsp;•&nbsp; Custom fabrication built around your project.</span><span><a href="tel:+17406068333">740-606-8333</a> &nbsp;•&nbsp; Serving industrial & commercial customers</span></div></div>
+  <nav class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Fluent Welding home"><img class="brand-logo" src="fluent-welding-logo.png" alt="Fluent Welding logo"></a>
+      <div class="links"><a href="#services">Services</a><a href="#work">Our Work</a><a href="#products">Products</a><a href="#process">Process</a><a href="#quote">Request a Quote</a></div>
+      <a class="btn primary mobile" href="#quote">Get Quote</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap">
+        <div>
+          <div class="eyebrow">Fluent Welding</div>
+          <h1>Precision fabrication without the runaround.</h1>
+          <p>Custom welded components, tank accessories, sidewall nozzles, roof nozzles, and made-to-order fabrication for contractors, tank builders, and industrial customers.</p>
+          <div class="actions"><a class="btn primary" href="#quote">Request a Quote</a><a class="btn ghost" href="#products">View Products</a></div>
+        </div>
+        <div class="heroCard" aria-label="Fluent Welding fabrication work">
+          <img class="hero-work" src="fabrication-showcase.webp" alt="Fluent Welding fabricated flanged piping and assemblies">
+          <div class="spark"></div><div class="badge">AWS CERTIFIED • CUSTOM • INDUSTRIAL</div>
+          <div class="hero-mark"><img src="fluent-welding-logo.png" alt="Fluent Welding — 740-606-8333"><div class="hero-caption">Tank accessories &amp; custom fabrication</div></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="stats"><div class="wrap">
+      <div class="stat"><strong>AWS Certified</strong><span>Certified welding capability for demanding fabrication work.</span></div>
+      <div class="stat"><strong>Built to your specs</strong><span>Standard products or custom fabrication.</span></div>
+      <div class="stat"><strong>Fast, clear quoting</strong><span>Send quantities, drawings, and need-by date.</span></div>
+      <div class="stat"><strong>Trade-focused service</strong><span>Made for buyers, contractors, and field teams.</span></div>
+    </div></div>
+
+    <section id="services"><div class="wrap">
+      <div class="sectionHead"><div><div class="eyebrow">Capabilities</div><h2>Fabrication that fits the job.</h2></div><p>From repeatable production pieces to one-off custom components, Fluent Welding is set up to make ordering straightforward and execution dependable.</p></div>
+      <div class="grid3">
+        <div class="card"><div class="icon">01</div><h3>Custom Fabrication</h3><p>Made-to-order welded assemblies and components built from drawings, dimensions, or project requirements.</p></div>
+        <div class="card"><div class="icon">02</div><h3>Tank Accessories</h3><p>Fabricated accessories for bolted and welded tank projects, with repeatable dimensions and project-specific options.</p></div>
+        <div class="card"><div class="icon">03</div><h3>Production Orders</h3><p>Consistent fabrication for customers who need multiple units, repeat orders, or a reliable outside fabrication partner.</p></div>
+      </div>
+      <div class="certBand"><div><strong>AWS Certified Welding</strong><span>Fluent Welding brings certified welding capability to custom components, tank accessories, and production fabrication.</span></div><div class="certTag">CERTIFIED QUALITY</div></div>
+    </div></section>
+
+    <section class="showcase" id="work"><div class="wrap">
+      <div class="sectionHead"><div><div class="eyebrow">Fabrication showcase</div><h2>Built for real-world tank work.</h2></div><p>A look at fabricated flanged assemblies, fittings, nozzles, and pipe work produced for industrial applications.</p></div>
+      <div class="showcaseGrid">
+        <div class="workShot large"><img src="fabrication-showcase.webp" alt="Collection of Fluent Welding fabricated flanged assemblies"><div class="workCaption"><strong>Custom tank piping &amp; assemblies</strong><span>Multiple sizes and configurations fabricated to project requirements.</span></div></div>
+        <div class="showcaseSide">
+          <div class="workShot"><img loading="lazy" src="fabricated-elbows.webp" alt="Fluent Welding fabricated flanged elbows and fittings"><div class="workCaption"><strong>Flanged elbows &amp; fittings</strong><span>Custom welded configurations for tank and piping applications.</span></div></div>
+          <div class="workShot"><img loading="lazy" src="flanged-nozzle.webp" alt="Fluent Welding fabricated flanged nozzle"><div class="workCaption"><strong>Flanged nozzle assemblies</strong><span>Clean fabrication with project-specific dimensions and flange requirements.</span></div></div>
+          <div class="workShot" style="grid-column:1/-1"><img loading="lazy" src="pipe-spool.webp" alt="Fluent Welding long fabricated flanged pipe spool"><div class="workCaption"><strong>Fabricated pipe spools</strong><span>Long-run welded assemblies with flanged connections.</span></div></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="dark" id="products"><div class="wrap">
+      <div class="sectionHead"><div><div class="eyebrow">Core products</div><h2>Start with what you need.</h2></div><p>These sections can expand as Fluent Welding adds additional products, sizes, drawings, and downloadable order sheets.</p></div>
+      <div class="grid3">
+        <div class="product">
+          <div class="productGallery">
+            <div class="productThumb"><img src="sidewall-nozzle-1.png" alt="Fluent Welding large sidewall nozzle"></div>
+            <div class="productThumb"><img src="sidewall-nozzle-2.png" alt="Fluent Welding small sidewall nozzle"></div>
+            <div class="productThumb"><img src="sidewall-nozzle.png" alt="Fluent Welding sidewall nozzle detail"></div>
+          </div>
+          <span class="size">Featured product line</span><h3>Sidewall Nozzles</h3>
+          <p>Fabricated sidewall nozzles for tank applications, available in multiple configurations for clean fit-up and dependable field installation.</p>
+          <div class="pillRow"><span class="pill">Tank accessory</span><span class="pill">Multiple sizes</span><span class="pill">Custom options available</span></div>
+          <ul><li>Flanged openings for tank wall connections</li><li>Available in multiple sizes and configurations</li><li>Can be quoted from drawings or dimensions</li></ul>
+        </div>
+        <div class="product"><div class="productThumb"><img loading="lazy" src="flanged-nozzle.webp" alt="Fluent Welding flanged nozzle"></div><span class="size">Tank accessory</span><h3>Roof Nozzles</h3><p>Fabricated roof nozzles available in common sizes with project-specific requirements accommodated.</p><div class="pillRow"><span class="pill">Common diameters</span><span class="pill">Quantity pricing</span></div><ul><li>Multiple standard diameters</li><li>Quantity pricing available</li><li>Built for straightforward field use</li></ul></div>
+        <div class="product"><div class="productThumb"><img loading="lazy" src="fabricated-elbows.webp" alt="Fluent Welding custom fabricated flanged components"></div><span class="size">Made to order</span><h3>Custom Components</h3><p>Send a sketch, drawing, dimension list, or sample requirement and Fluent Welding can quote the fabrication.</p><div class="pillRow"><span class="pill">One-off or repeat</span><span class="pill">Drawing-based</span></div><ul><li>One-off or repeat production</li><li>Drawing-based fabrication</li><li>Industrial/commercial applications</li></ul></div>
+      </div>
+      <div class="grid3" style="margin-top:18px">
+        <div class="product">
+          <div class="productThumb"><img src="anti-vortex-with-plate.png" alt="Fluent Welding anti vortex with plate"></div>
+          <span class="size">Tank accessory</span><h3>Anti Vortex with Plate</h3>
+          <p>Fabricated anti vortex assembly with plate, designed for tank applications where flow control and clean installation matter.</p>
+          <div class="pillRow"><span class="pill">Flow-control accessory</span><span class="pill">Fabricated assembly</span></div>
+          <ul><li>Built for tank-related applications</li><li>Plate-mounted fabricated design</li><li>Can be quoted from drawings or dimensions</li></ul>
+        </div>
+        <div class="product">
+          <div class="productThumb"><img src="interior-funnel.png" alt="Fluent Welding interior funnel"></div>
+          <span class="size">Tank accessory</span><h3>Interior Funnel</h3>
+          <p>Fabricated interior funnel assembly for tank applications, built for reliable placement and clean integration inside the tank system.</p>
+          <div class="pillRow"><span class="pill">Interior tank component</span><span class="pill">Custom fabrication</span></div>
+          <ul><li>Designed for interior tank installation</li><li>Clean welded assembly for dependable fit-up</li><li>Can be quoted from drawings or dimensions</li></ul>
+        </div>
+        <div class="product"><div class="productThumb"><img loading="lazy" src="pipe-spool.webp" alt="Fluent Welding fabricated pipe spool"></div><span class="size">Custom fabrication</span><h3>Pipe Spools</h3><p>Fabricated flanged pipe spools for industrial and tank-related applications, built to project dimensions.</p><div class="pillRow"><span class="pill">Flanged ends</span><span class="pill">Made to drawing</span></div><ul><li>Project-specific lengths and configurations</li><li>Welded and fabricated as an assembly</li><li>Quote from drawing or dimensions</li></ul></div>
+      </div>
+      <div class="grid2" style="margin-top:18px">
+        <div class="product"><div class="productThumb"><img loading="lazy" src="fabrication-showcase.webp" alt="Fluent Welding custom fabrication assortment"></div><span class="size">Made to order</span><h3>Custom Fabrication</h3><p>Need something outside the standard catalog? Send a sketch, drawing, sample, or dimensions and Fluent Welding can review it for fabrication.</p><ul><li>One-off and repeat production</li><li>Industrial and tank-related components</li><li>Drawing-based quoting</li></ul></div>
+        <div class="product"><span class="size">Buyer friendly</span><h3>Quote &amp; Order Support</h3><p>Provide quantity, description, drawings, delivery location, and need-by date for a cleaner buying process.</p><div class="pillRow"><span class="pill">Electronic requests</span><span class="pill">Clear communication</span></div><ul><li>Electronic quote requests</li><li>Order-sheet friendly workflow</li><li>Clear project communication</li></ul></div>
+      </div>
+    </div></section>
+
+    <section id="process"><div class="wrap">
+      <div class="sectionHead"><div><div class="eyebrow">How it works</div><h2>Simple from request to delivery.</h2></div><p>No bloated process. Give us enough information to understand the work, and we can move from quote to fabrication.</p></div>
+      <div class="process">
+        <div class="step"><div class="num">01</div><h3>Send the request</h3><p>Tell us what you need, quantity, material/spec information, and your target date.</p></div>
+        <div class="step"><div class="num">02</div><h3>Review & quote</h3><p>We review the scope and confirm any details needed to price the work correctly.</p></div>
+        <div class="step"><div class="num">03</div><h3>Fabricate</h3><p>Approved work moves into fabrication with the agreed requirements and quantities.</p></div>
+        <div class="step"><div class="num">04</div><h3>Pickup or delivery</h3><p>Coordinate the final handoff based on the order and customer requirements.</p></div>
+      </div>
+    </div></section>
+
+    <section class="quote" id="quote"><div class="wrap">
+      <div class="quoteBox">
+        <div class="quoteIntro"><div class="eyebrow">Request pricing</div><h2>Tell us what you need.</h2><p>Use this form as the front-end of your future quote workflow. We can connect it to Google Forms, Formspree, Basin, or another service so submissions land directly in email or a spreadsheet.</p><div class="mini">Tip: drawings, sketches, quantities, and a need-by date make quotes faster.</div></div>
+        <form id="quoteForm">
+          <label>Name<input name="name" required placeholder="Your name"></label>
+          <label>Company<input name="company" placeholder="Company name"></label>
+          <label>Email<input type="email" name="email" required placeholder="name@company.com"></label>
+          <label>Phone<input type="tel" name="phone" placeholder="(555) 555-5555"></label>
+          <label>Quantity<input name="quantity" placeholder="e.g. 6"></label>
+          <label>Need-by date<input type="date" name="needby"></label>
+          <label class="full">What do you need?<textarea name="details" required placeholder="Product, size, material, dimensions, drawing number, delivery location, or any other details..."></textarea></label>
+          <div class="full"><button type="submit" class="btn primary">Prepare Quote Request</button></div>
+          <div class="formNote">The form is currently configured as a safe demo. Before launch, connect it to the email/form service you want to use.</div>
+        </form>
+      </div>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap">
+    <div class="footerGrid">
+      <div><a class="brand" href="#top"><img class="footer-logo" src="fluent-welding-logo.png" alt="Fluent Welding"></a><p>Professional fabrication and tank accessories for customers who need it done right and communicated clearly.</p></div>
+      <div><h4>Navigate</h4><p><a href="#services">Services</a></p><p><a href="#products">Products</a></p><p><a href="#quote">Request a Quote</a></p></div>
+      <div><h4>Contact</h4><p><a href="tel:+17406068333">740-606-8333</a></p><p>fluentwelding.com</p><p><strong style="color:white">AWS Certified</strong></p></div>
+    </div>
+    <div class="fine">© <span id="year"></span> Fluent Welding. All rights reserved.</div>
+  </div></footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('quoteForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = new FormData(this);
+      const lines = [
+        'Fluent Welding Quote Request', '',
+        'Name: ' + (data.get('name')||''),
+        'Company: ' + (data.get('company')||''),
+        'Email: ' + (data.get('email')||''),
+        'Phone: ' + (data.get('phone')||''),
+        'Quantity: ' + (data.get('quantity')||''),
+        'Need-by date: ' + (data.get('needby')||''), '',
+        'Details:', (data.get('details')||'')
+      ];
+      navigator.clipboard?.writeText(lines.join('\n'));
+      alert('Quote request prepared and copied to your clipboard. Before launch, we will connect this form so it submits directly to Fluent Welding.');
+    });
+  </script>
+</body>
+</html>
