@@ -206,17 +206,17 @@
 
     <section class="quote" id="quote"><div class="wrap">
       <div class="quoteBox">
-        <div class="quoteIntro"><div class="eyebrow">Request pricing</div><h2>Tell us what you need.</h2><p>Use this form as the front-end of your future quote workflow. We can connect it to Google Forms, Formspree, Basin, or another service so submissions land directly in email or a spreadsheet.</p><div class="mini">Tip: drawings, sketches, quantities, and a need-by date make quotes faster.</div></div>
-        <form id="quoteForm">
-          <label>Name<input name="name" required placeholder="Your name"></label>
-          <label>Company<input name="company" placeholder="Company name"></label>
-          <label>Email<input type="email" name="email" required placeholder="name@company.com"></label>
-          <label>Phone<input type="tel" name="phone" placeholder="(555) 555-5555"></label>
+        <div class="quoteIntro"><div class="eyebrow">Request pricing</div><h2>Tell us what you need.</h2><p>Send your project details directly to Fluent Welding. Quote requests are logged for follow-up so your requirements, quantities, and schedule stay organized.</p><div class="mini">Tip: drawings, sketches, quantities, and a need-by date make quotes faster.</div></div>
+        <form id="quoteForm" action="https://script.google.com/macros/s/AKfycbzaS8aJCWTacpTCPX53fyhyqrOQPiStbcoBisjhyEXom8KSsj0WDF7s3DUNOYOpQbs/exec" method="post">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name"></label>
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company name"></label>
+          <label>Email<input type="email" name="email" required autocomplete="email" placeholder="name@company.com"></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="(555) 555-5555"></label>
           <label>Quantity<input name="quantity" placeholder="e.g. 6"></label>
           <label>Need-by date<input type="date" name="needby"></label>
           <label class="full">What do you need?<textarea name="details" required placeholder="Product, size, material, dimensions, drawing number, delivery location, or any other details..."></textarea></label>
-          <div class="full"><button type="submit" class="btn primary">Prepare Quote Request</button></div>
-          <div class="formNote">The form is currently configured as a safe demo. Before launch, connect it to the email/form service you want to use.</div>
+          <div class="full"><button id="quoteSubmit" type="submit" class="btn primary">Send Quote Request</button></div>
+          <div class="formNote" id="formStatus" role="status" aria-live="polite">Your request will be sent directly to Fluent Welding for review.</div>
         </form>
       </div>
     </div></section>
@@ -233,21 +233,35 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('quoteForm').addEventListener('submit', function(e){
+
+    const quoteForm = document.getElementById('quoteForm');
+    const quoteSubmit = document.getElementById('quoteSubmit');
+    const formStatus = document.getElementById('formStatus');
+
+    quoteForm.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const data = new FormData(this);
-      const lines = [
-        'Fluent Welding Quote Request', '',
-        'Name: ' + (data.get('name')||''),
-        'Company: ' + (data.get('company')||''),
-        'Email: ' + (data.get('email')||''),
-        'Phone: ' + (data.get('phone')||''),
-        'Quantity: ' + (data.get('quantity')||''),
-        'Need-by date: ' + (data.get('needby')||''), '',
-        'Details:', (data.get('details')||'')
-      ];
-      navigator.clipboard?.writeText(lines.join('\n'));
-      alert('Quote request prepared and copied to your clipboard. Before launch, we will connect this form so it submits directly to Fluent Welding.');
+
+      quoteSubmit.disabled = true;
+      quoteSubmit.textContent = 'Sending...';
+      formStatus.textContent = 'Sending your request to Fluent Welding...';
+
+      try {
+        const body = new URLSearchParams(new FormData(quoteForm));
+        await fetch('https://script.google.com/macros/s/AKfycbzaS8aJCWTacpTCPX53fyhyqrOQPiStbcoBisjhyEXom8KSsj0WDF7s3DUNOYOpQbs/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+          body: body
+        });
+
+        quoteForm.reset();
+        formStatus.textContent = 'Request sent. Thank you — Fluent Welding will review your information and follow up.';
+      } catch (error) {
+        formStatus.textContent = 'We could not send the request. Please try again or call 740-606-8333.';
+      } finally {
+        quoteSubmit.disabled = false;
+        quoteSubmit.textContent = 'Send Quote Request';
+      }
     });
   </script>
 </body>
