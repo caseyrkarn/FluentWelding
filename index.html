@@ -88,13 +88,26 @@
     label{font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.08em;color:#4e555c}
     input,textarea,select{width:100%;margin-top:7px;border:1px solid #d4d6d8;border-radius:12px;padding:13px 14px;font:inherit;background:#fbfbfa}
     textarea{min-height:126px;resize:vertical}.full{grid-column:1/-1}.formNote{font-size:12px;color:var(--muted);grid-column:1/-1}
+    .formSection{grid-column:1/-1;margin-top:8px;padding-top:22px;border-top:1px solid #e3e3df}
+    .formSection:first-of-type{margin-top:0;padding-top:0;border-top:0}
+    .formSectionTitle{font-size:13px;font-weight:950;text-transform:uppercase;letter-spacing:.12em;color:#151719;margin-bottom:4px}
+    .formSectionHelp{font-size:13px;color:var(--muted);margin-bottom:14px}
+    .itemList{grid-column:1/-1;display:grid;gap:14px}
+    .quoteItem{border:1px solid #dedfdf;background:#f8f8f6;border-radius:16px;padding:18px;display:grid;grid-template-columns:1.2fr 1fr 1fr .55fr;gap:14px;position:relative}
+    .quoteItem .itemNotes{grid-column:1/-1}
+    .itemHeader{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:-2px}
+    .itemTitle{font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.12em;color:#151719}
+    .removeItem{border:0;background:transparent;color:#8a202d;font-size:12px;font-weight:850;cursor:pointer;padding:4px 0}
+    .addItemBtn{grid-column:1/-1;border:1px dashed #b9bcc0;background:#fff;border-radius:14px;padding:13px 16px;font:inherit;font-weight:850;cursor:pointer;color:#151719}
+    .addItemBtn:hover{border-color:var(--accent);color:var(--accent2)}
+    .drawingsNote{grid-column:1/-1;background:#f4f1eb;border-left:4px solid var(--accent);padding:14px 16px;border-radius:10px;font-size:13px;color:#555b60;line-height:1.5}
     footer{background:#0f1113;color:white;padding:42px 0 24px}.footerGrid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:30px}.footerGrid p,.footerGrid a{color:#aeb3b8;font-size:14px}.footerGrid h4{margin-top:0}.fine{border-top:1px solid #292d31;margin-top:30px;padding-top:20px;color:#777e85;font-size:12px}
     .mobile{display:none}
     @media (max-width:900px){
-      .links{display:none}.mobile{display:inline-flex}.hero .wrap,.quoteBox,.showcaseGrid{grid-template-columns:1fr}.heroCard{min-height:350px}.stats .wrap,.grid3,.grid2,.process{grid-template-columns:1fr 1fr}.footerGrid{grid-template-columns:1fr 1fr}.hero .wrap{padding:62px 0}.workShot.large img{min-height:420px}.certBand{align-items:flex-start}
+      .links{display:none}.mobile{display:inline-flex}.hero .wrap,.quoteBox,.showcaseGrid{grid-template-columns:1fr}.heroCard{min-height:350px}.stats .wrap,.grid3,.grid2,.process{grid-template-columns:1fr 1fr}.footerGrid{grid-template-columns:1fr 1fr}.hero .wrap{padding:62px 0}.workShot.large img{min-height:420px}.certBand{align-items:flex-start}.quoteItem{grid-template-columns:1fr 1fr}
     }
     @media (max-width:620px){
-      .wrap{width:min(100% - 28px,var(--max))}.topbar .wrap{justify-content:center}.topbar .wrap span:last-child{display:none}.stats .wrap,.grid3,.grid2,.process,.footerGrid,.showcaseSide{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.sectionHead{display:block}.heroCard{min-height:310px}.brand-logo{width:205px}.heroCard{min-height:280px;padding:28px}.hero-mark{left:14px;right:14px;bottom:14px}.hero-caption{display:none}.certBand{display:block}.certTag{display:inline-block;margin-top:14px}.workShot img,.workShot.large img{height:280px;min-height:0}form{grid-template-columns:1fr;padding:24px}.full{grid-column:auto}section{padding:64px 0}
+      .wrap{width:min(100% - 28px,var(--max))}.topbar .wrap{justify-content:center}.topbar .wrap span:last-child{display:none}.stats .wrap,.grid3,.grid2,.process,.footerGrid,.showcaseSide{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.sectionHead{display:block}.heroCard{min-height:310px}.brand-logo{width:205px}.heroCard{min-height:280px;padding:28px}.hero-mark{left:14px;right:14px;bottom:14px}.hero-caption{display:none}.certBand{display:block}.certTag{display:inline-block;margin-top:14px}.workShot img,.workShot.large img{height:280px;min-height:0}form{grid-template-columns:1fr;padding:24px}.quoteItem{grid-template-columns:1fr}.full{grid-column:auto}section{padding:64px 0}
     }
   </style>
 </head>
@@ -206,16 +219,27 @@
 
     <section class="quote" id="quote"><div class="wrap">
       <div class="quoteBox">
-        <div class="quoteIntro"><div class="eyebrow">Request pricing</div><h2>Tell us what you need.</h2><p>Send your project details directly to Fluent Welding. Quote requests are logged for follow-up so your requirements, quantities, and schedule stay organized.</p><div class="mini">Tip: drawings, sketches, quantities, and a need-by date make quotes faster.</div></div>
+        <div class="quoteIntro"><div class="eyebrow">Request pricing</div><h2>Tell us what you need.</h2><p>Send your project and item requirements directly to Fluent Welding. Add as many line items as needed and we’ll keep the entire request together under one RFQ number.</p><div class="mini">Tip: size, material, quantity, drawings, and your requested delivery date help us quote faster.</div></div>
         <form id="quoteForm" action="https://script.google.com/macros/s/AKfycbzaS8aJCWTacpTCPX53fyhyqrOQPiStbcoBisjhyEXom8KSsj0WDF7s3DUNOYOpQbs/exec" method="post">
+          <div class="formSection"><div class="formSectionTitle">Contact Information</div><div class="formSectionHelp">Who should we contact about this quote?</div></div>
           <label>Name<input name="name" required autocomplete="name" placeholder="Your name"></label>
-          <label>Company<input name="company" autocomplete="organization" placeholder="Company name"></label>
+          <label>Company<input name="company" required autocomplete="organization" placeholder="Company name"></label>
           <label>Email<input type="email" name="email" required autocomplete="email" placeholder="name@company.com"></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="(555) 555-5555"></label>
-          <label>Quantity<input name="quantity" placeholder="e.g. 6"></label>
-          <label>Need-by date<input type="date" name="needby"></label>
-          <label class="full">What do you need?<textarea name="details" required placeholder="Product, size, material, dimensions, drawing number, delivery location, or any other details..."></textarea></label>
-          <div class="full"><button id="quoteSubmit" type="submit" class="btn primary">Send Quote Request</button></div>
+          <label>Phone<input type="tel" name="phone" required autocomplete="tel" placeholder="(555) 555-5555"></label>
+
+          <div class="formSection"><div class="formSectionTitle">Project Information</div><div class="formSectionHelp">Optional project details that help us keep your request organized.</div></div>
+          <label>Project / Job Name<input name="project" placeholder="e.g. Amazon CMH7 - Tank 2"></label>
+          <label>Ship-to City &amp; State<input name="shipto" placeholder="e.g. Columbus, OH"></label>
+          <label class="full">Requested Delivery Date<input type="date" name="requested_date"></label>
+
+          <div class="formSection"><div class="formSectionTitle">Items to Quote</div><div class="formSectionHelp">Enter the product, size, material, and quantity for each item.</div></div>
+          <div id="itemList" class="itemList"></div>
+          <button type="button" id="addItem" class="addItemBtn">+ Add Another Item</button>
+
+          <div class="formSection"><div class="formSectionTitle">Additional Project Details</div></div>
+          <label class="full">Anything else we should know?<textarea name="project_details" placeholder="Coatings, flange requirements, drawing numbers, special fabrication requirements, application information, or other details..."></textarea></label>
+          <div class="drawingsNote"><strong>Have drawings or specifications?</strong><br>Submit the request first, then reply to your confirmation email and attach any drawings, specifications, sketches, or photos.</div>
+          <div class="full"><button id="quoteSubmit" type="submit" class="btn primary">Submit Quote Request</button></div>
           <div class="formNote" id="formStatus" role="status" aria-live="polite">Your request will be sent directly to Fluent Welding for review.</div>
         </form>
       </div>
@@ -237,6 +261,80 @@
     const quoteForm = document.getElementById('quoteForm');
     const quoteSubmit = document.getElementById('quoteSubmit');
     const formStatus = document.getElementById('formStatus');
+    const itemList = document.getElementById('itemList');
+    const addItemButton = document.getElementById('addItem');
+
+    function itemTemplate(index) {
+      return `
+        <div class="quoteItem" data-item-index="${index}">
+          <div class="itemHeader">
+            <div class="itemTitle">Item ${index + 1}</div>
+            ${index > 0 ? '<button type="button" class="removeItem">Remove Item</button>' : ''}
+          </div>
+          <label>Product / Fabrication Type
+            <select name="item_type_${index}" required>
+              <option value="">Select...</option>
+              <option>Roof Nozzle</option>
+              <option>Sidewall Nozzle</option>
+              <option>Anti-Vortex Assembly</option>
+              <option>Interior Funnel</option>
+              <option>Pipe Spool</option>
+              <option>Flanged Elbow / Nozzle Assembly</option>
+              <option>Custom Fabrication</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Size / Dimensions<input name="item_size_${index}" required placeholder="e.g. 6 in. or 2 x 8 channel x 20 ft."></label>
+          <label>Material
+            <select name="item_material_${index}" required>
+              <option value="">Select...</option>
+              <option>Carbon Steel</option>
+              <option>304 Stainless</option>
+              <option>316 Stainless</option>
+              <option>Aluminum</option>
+              <option>Other</option>
+              <option>Not Sure</option>
+            </select>
+          </label>
+          <label>Quantity<input type="number" name="item_qty_${index}" min="1" step="1" required placeholder="1"></label>
+          <label class="itemNotes">Item Notes / Specifications<textarea name="item_notes_${index}" placeholder="Optional: flange class, coating, drawing reference, special requirements..."></textarea></label>
+        </div>`;
+    }
+
+    function rebuildItemNumbers() {
+      [...itemList.querySelectorAll('.quoteItem')].forEach((item, newIndex) => {
+        item.dataset.itemIndex = newIndex;
+        item.querySelector('.itemTitle').textContent = `Item ${newIndex + 1}`;
+        item.querySelectorAll('[name]').forEach(field => {
+          field.name = field.name.replace(/_\d+$/, `_${newIndex}`);
+        });
+        const header = item.querySelector('.itemHeader');
+        const existingRemove = item.querySelector('.removeItem');
+        if (newIndex === 0 && existingRemove) existingRemove.remove();
+        if (newIndex > 0 && !existingRemove) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'removeItem';
+          btn.textContent = 'Remove Item';
+          header.appendChild(btn);
+        }
+      });
+    }
+
+    function addItem() {
+      const index = itemList.querySelectorAll('.quoteItem').length;
+      itemList.insertAdjacentHTML('beforeend', itemTemplate(index));
+    }
+
+    itemList.addEventListener('click', function(e) {
+      if (e.target.classList.contains('removeItem')) {
+        e.target.closest('.quoteItem').remove();
+        rebuildItemNumbers();
+      }
+    });
+
+    addItemButton.addEventListener('click', addItem);
+    addItem();
 
     quoteForm.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -246,7 +344,10 @@
       formStatus.textContent = 'Sending your request to Fluent Welding...';
 
       try {
-        const body = new URLSearchParams(new FormData(quoteForm));
+        const formData = new FormData(quoteForm);
+        formData.append('item_count', itemList.querySelectorAll('.quoteItem').length);
+        const body = new URLSearchParams(formData);
+
         await fetch('https://script.google.com/macros/s/AKfycbzaS8aJCWTacpTCPX53fyhyqrOQPiStbcoBisjhyEXom8KSsj0WDF7s3DUNOYOpQbs/exec', {
           method: 'POST',
           mode: 'no-cors',
@@ -255,12 +356,14 @@
         });
 
         quoteForm.reset();
-        formStatus.textContent = 'Request sent. Thank you — Fluent Welding will review your information and follow up.';
+        itemList.innerHTML = '';
+        addItem();
+        formStatus.textContent = 'Quote request sent. Check your email for your Fluent Welding RFQ confirmation number.';
       } catch (error) {
         formStatus.textContent = 'We could not send the request. Please try again or call 740-606-8333.';
       } finally {
         quoteSubmit.disabled = false;
-        quoteSubmit.textContent = 'Send Quote Request';
+        quoteSubmit.textContent = 'Submit Quote Request';
       }
     });
   </script>
