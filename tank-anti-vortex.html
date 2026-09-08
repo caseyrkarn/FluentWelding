@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Anti-Vortex Assemblies for Storage Tanks | Fluent Welding</title>
-<meta name="description" content="Fluent Welding fabricates anti-vortex assemblies for storage tank applications in common sizes with project-specific geometry, materials, and fabrication requirements." />
+<meta name="description" content="Fluent Welding fabricates project-specific anti-vortex assemblies for storage tank applications in common sizes from 4 inch through 12 inch." />
 <link rel="canonical" href="https://fluentwelding.com/tank-anti-vortex.html" />
 
 <script type="application/ld+json">
@@ -32,17 +32,18 @@
   --muted:#6e747b;
   --paper:#f4f3ef;
   --panel:#ffffff;
-  --steel:#22262b;
   --line:#d9d6ce;
   --accent:#e10047;
   --accent2:#ff3a73;
-  --shadow:0 18px 50px rgba(0,0,0,.10);
-  --radius:20px;
+  --dark:#17191c;
+  --dark2:#202328;
   --max:1180px;
+  --radius:22px;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
   margin:0;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -50,25 +51,62 @@ body{
   background:var(--paper);
   line-height:1.5;
 }
+
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
 
-.topbar{background:#0e1012;color:#d7dade;font-size:13px}
-.topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:9px 0}
+.wrap{
+  width:min(var(--max),calc(100% - 40px));
+  margin:auto;
+}
+
+.topbar{
+  background:#0e1012;
+  color:#d7dade;
+  font-size:13px;
+}
+
+.topbar .wrap{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:9px 0;
+}
 
 .nav{
   position:sticky;
   top:0;
   z-index:30;
-  background:rgba(244,243,239,.94);
+  background:rgba(244,243,239,.95);
   backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(0,0,0,.06);
 }
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
-.brand{display:flex;align-items:center;font-weight:900}
-.brand-logo{width:290px;max-height:72px;object-fit:contain}
-.links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:750}
+
+.nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+}
+
+.brand-logo{
+  width:290px;
+  max-height:72px;
+  object-fit:contain;
+}
+
+.links{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  font-size:14px;
+  font-weight:750;
+}
 
 .btn{
   display:inline-flex;
@@ -82,98 +120,312 @@ img{max-width:100%;display:block}
   transition:.2s ease;
   cursor:pointer;
 }
-.btn.primary{background:var(--accent);color:#fff}
-.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
-.btn.dark{background:#17191c;color:#fff}
-.btn.outline{border-color:#c9c7c0;background:#fff}
+
+.btn.primary{
+  background:var(--accent);
+  color:#fff;
+}
+
+.btn.primary:hover{
+  background:var(--accent2);
+  transform:translateY(-1px);
+}
+
+.btn.dark{
+  background:#111316;
+  color:#fff;
+}
+
+.btn.outline{
+  border-color:#cbc8c0;
+  background:#fff;
+}
+
+.mobile{display:none}
 
 .hero{
+  position:relative;
+  overflow:hidden;
   background:
-    radial-gradient(circle at 85% 20%,rgba(225,0,71,.18),transparent 34%),
-    linear-gradient(135deg,#0f1113 0%,#1a1e22 58%,#252a30 100%);
-  color:white;
+    radial-gradient(circle at 84% 18%,rgba(225,0,71,.22),transparent 31%),
+    linear-gradient(135deg,#0f1113 0%,#1b1e22 61%,#252a30 100%);
+  color:#fff;
 }
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-210px;
+  bottom:-270px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+}
+
 .hero .wrap{
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:48px;
+  grid-template-columns:1.08fr .92fr;
+  gap:55px;
   align-items:center;
-  padding:76px 0;
+  padding:86px 0;
 }
+
 .eyebrow{
   display:inline-flex;
-  gap:9px;
   align-items:center;
+  gap:9px;
+  color:var(--accent2);
   font-size:12px;
+  font-weight:900;
   text-transform:uppercase;
   letter-spacing:.18em;
-  font-weight:900;
-  color:var(--accent2);
 }
-.eyebrow:before{content:"";width:34px;height:2px;background:var(--accent)}
+
+.eyebrow:before{
+  content:"";
+  width:34px;
+  height:2px;
+  background:var(--accent);
+}
+
 h1{
-  font-size:clamp(42px,5.5vw,72px);
-  line-height:1;
-  letter-spacing:-.05em;
+  font-size:clamp(46px,6vw,78px);
+  line-height:.98;
+  letter-spacing:-.055em;
   margin:16px 0 20px;
 }
-.hero p{font-size:19px;color:#c7cbd0;max-width:690px;margin:0 0 28px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.heroCard{
-  background:#fff;
-  border-radius:28px;
-  padding:24px;
-  box-shadow:0 34px 80px rgba(0,0,0,.28);
+
+.hero-copy{
+  font-size:19px;
+  color:#c7cbd0;
+  max-width:700px;
+  margin:0 0 28px;
 }
-.heroCard img{
-  width:100%;
-  max-height:470px;
-  object-fit:contain;
-  background:#fafaf8;
-  border-radius:18px;
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.techPanel{
+  position:relative;
+  z-index:2;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:28px;
+  background:linear-gradient(145deg,#24282d,#131517);
+  padding:30px;
+  box-shadow:0 32px 75px rgba(0,0,0,.30);
+}
+
+.techPanel:before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;
+  pointer-events:none;
+}
+
+.techLabel{
+  position:relative;
+  z-index:2;
+  color:var(--accent2);
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.techPanel h2{
+  position:relative;
+  z-index:2;
+  font-size:34px;
+  line-height:1.05;
+  margin:12px 0 8px;
+}
+
+.techPanel p{
+  position:relative;
+  z-index:2;
+  color:#bfc4c8;
+  margin:0 0 24px;
+}
+
+.dimensionRow{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+
+.dimension{
+  border:1px solid rgba(255,255,255,.10);
+  background:#181b1f;
+  border-radius:14px;
+  padding:13px 8px;
+  text-align:center;
+}
+
+.dimension strong{
+  display:block;
+  font-size:21px;
+  color:#fff;
+}
+
+.dimension span{
+  display:block;
+  margin-top:2px;
+  color:#8f969d;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.drawingBadge{
+  position:relative;
+  z-index:2;
+  margin-top:18px;
+  border-left:4px solid var(--accent);
+  background:rgba(255,255,255,.05);
+  border-radius:12px;
+  padding:14px 16px;
+  color:#e3e5e7;
+  font-size:13px;
+  font-weight:750;
 }
 
 section{padding:76px 0}
-.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+
+.sectionHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:30px;
+}
+
 .sectionHead h2{
   font-size:clamp(32px,4vw,50px);
   line-height:1.04;
   letter-spacing:-.04em;
   margin:7px 0 0;
 }
-.sectionHead p{max-width:540px;color:var(--muted);margin:0}
 
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sectionHead p{
+  max-width:540px;
+  color:var(--muted);
+  margin:0;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
 .card{
   background:#fff;
   border:1px solid var(--line);
   border-radius:var(--radius);
-  padding:26px;
+  padding:28px;
 }
-.card h3{margin:0 0 8px;font-size:22px}
-.card p{margin:0;color:var(--muted)}
 
-.dark{background:#17191c;color:#fff}
-.dark .sectionHead p{color:#b7bbc0}
+.cardNumber{
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  border-radius:13px;
+  margin-bottom:20px;
+  background:#17191c;
+  color:var(--accent2);
+  font-weight:950;
+}
 
-.sizeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.card h3{
+  margin:0 0 8px;
+  font-size:22px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+}
+
+.dark{
+  background:var(--dark);
+  color:#fff;
+}
+
+.dark .sectionHead p{
+  color:#b7bbc0;
+}
+
+.sizeGrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+
 .sizeCard{
   border:1px solid #34383e;
-  background:#202328;
+  background:var(--dark2);
   border-radius:20px;
-  padding:24px;
+  padding:25px 16px;
   text-align:center;
 }
-.sizeCard strong{display:block;font-size:30px;margin-bottom:7px}
-.sizeCard span{display:block;color:#bfc3c7;font-size:13px}
+
+.sizeCard strong{
+  display:block;
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.sizeCard span{
+  display:block;
+  color:#bfc3c7;
+  font-size:13px;
+}
+
 .quoteTag{
   display:inline-block;
   margin-top:12px;
   color:var(--accent2);
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  letter-spacing:.12em;
+  letter-spacing:.10em;
   text-transform:uppercase;
+}
+
+.details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.detailBox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:30px;
+}
+
+.detailBox h3{
+  margin:0 0 14px;
+  font-size:24px;
+}
+
+.detailBox ul{
+  margin:0;
+  padding-left:20px;
+  color:#555b60;
+}
+
+.detailBox li+li{
+  margin-top:8px;
 }
 
 .notice{
@@ -184,54 +436,98 @@ section{padding:76px 0}
   border-radius:16px;
   padding:20px 22px;
 }
-.notice strong{display:block;margin-bottom:5px}
-.notice p{margin:0;color:var(--muted)}
 
-.details{
+.notice strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.notice p{
+  margin:0;
+  color:var(--muted);
+}
+
+.related{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-.detailBox{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:28px;
-}
-.detailBox h3{margin-top:0;font-size:24px}
-.detailBox ul{margin-bottom:0;padding-left:20px;color:#555b60}
 
-
-.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .relatedCard{
   background:#fff;
   border:1px solid var(--line);
   border-radius:20px;
   padding:24px;
 }
-.relatedCard h3{margin:0 0 8px}
-.relatedCard p{margin:0 0 18px;color:var(--muted)}
+
+.relatedCard h3{
+  margin:0 0 8px;
+}
+
+.relatedCard p{
+  margin:0 0 18px;
+  color:var(--muted);
+}
 
 .cta{
-  background:linear-gradient(135deg,#111316,#252a30);
-  color:white;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(225,0,71,.18),transparent 28%),
+    linear-gradient(135deg,#111316,#252a30);
+  color:#fff;
 }
+
 .ctaBox{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:28px;
 }
-.cta h2{font-size:clamp(32px,4vw,50px);margin:0 0 10px;letter-spacing:-.04em}
-.cta p{color:#c4c8cc;margin:0;max-width:650px}
 
-footer{background:#0f1113;color:white;padding:40px 0 24px}
-.footerGrid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:30px}
-.footerGrid p,.footerGrid a{color:#aeb3b8;font-size:14px}
-.footer-logo{width:330px;max-width:100%;background:white;border-radius:8px;padding:4px}
-.fine{border-top:1px solid #292d31;margin-top:30px;padding-top:20px;color:#777e85;font-size:12px}
+.cta h2{
+  font-size:clamp(32px,4vw,50px);
+  letter-spacing:-.04em;
+  margin:7px 0 10px;
+}
 
-.mobile{display:none}
+.cta p{
+  color:#c4c8cc;
+  margin:0;
+  max-width:650px;
+}
+
+footer{
+  background:#0f1113;
+  color:#fff;
+  padding:40px 0 24px;
+}
+
+.footerGrid{
+  display:grid;
+  grid-template-columns:1.4fr .6fr .6fr;
+  gap:30px;
+}
+
+.footerGrid p,
+.footerGrid a{
+  color:#aeb3b8;
+  font-size:14px;
+}
+
+.footer-logo{
+  width:330px;
+  max-width:100%;
+  background:#fff;
+  border-radius:8px;
+  padding:4px;
+}
+
+.fine{
+  border-top:1px solid #292d31;
+  margin-top:30px;
+  padding-top:20px;
+  color:#777e85;
+  font-size:12px;
+}
 
 @media (max-width:900px){
   .links{display:none}
@@ -248,6 +544,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
   .topbar .wrap{justify-content:center}
   .topbar .wrap span:last-child{display:none}
   .grid3,.related,.sizeGrid,.footerGrid{grid-template-columns:1fr}
+  .dimensionRow{grid-template-columns:repeat(3,1fr)}
   .sectionHead,.ctaBox{display:block}
   .cta .actions{margin-top:22px}
   .brand-logo{width:205px}
@@ -267,6 +564,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
 
 <nav class="nav">
   <div class="wrap">
+
     <a class="brand" href="index.html" aria-label="Fluent Welding home">
       <img class="brand-logo" src="fluent-welding-logo.png" alt="Fluent Welding logo">
     </a>
@@ -280,6 +578,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
     </div>
 
     <a class="btn primary mobile" href="index.html#quote">Get Quote</a>
+
   </div>
 </nav>
 
@@ -287,10 +586,13 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
 
 <header class="hero">
   <div class="wrap">
+
     <div>
       <div class="eyebrow">Tank Accessories</div>
+
       <h1>Anti-Vortex Assemblies</h1>
-      <p>
+
+      <p class="hero-copy">
         Fabricated anti-vortex assemblies for storage tank applications.
         Fluent Welding can build complete assemblies or fabricate from buyer-supplied material,
         with final geometry confirmed from the project drawing before release.
@@ -302,9 +604,29 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
       </div>
     </div>
 
-    <div class="heroCard">
-      <img src="fabrication-showcase.webp" alt="Fluent Welding fabricated tank accessories and assemblies">
+    <div class="techPanel">
+      <div class="techLabel">Project-Specific Fabrication</div>
+
+      <h2>Built from the approved drawing.</h2>
+
+      <p>
+        Anti-vortex geometry varies by project. Fluent confirms the configuration,
+        material, dimensions, and fabrication requirements before release.
+      </p>
+
+      <div class="dimensionRow">
+        <div class="dimension"><strong>4&quot;</strong><span>Quote Size</span></div>
+        <div class="dimension"><strong>6&quot;</strong><span>Quote Size</span></div>
+        <div class="dimension"><strong>8&quot;</strong><span>Quote Size</span></div>
+        <div class="dimension"><strong>10&quot;</strong><span>Quote Size</span></div>
+        <div class="dimension"><strong>12&quot;</strong><span>Quote Size</span></div>
+      </div>
+
+      <div class="drawingBadge">
+        Drawing confirmation required before fabrication.
+      </div>
     </div>
+
   </div>
 </header>
 
@@ -313,12 +635,12 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
 
     <div class="sectionHead">
       <div>
-        <div class="eyebrow">Fabrication options</div>
+        <div class="eyebrow">Fabrication Options</div>
         <h2>Built around the project.</h2>
       </div>
 
       <p>
-        Anti-vortex assemblies are treated as project-specific fabrication.
+        Anti-vortex assemblies are project-specific fabrication.
         Size alone does not establish the final geometry, so the approved drawing governs fabrication.
       </p>
     </div>
@@ -326,23 +648,29 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
     <div class="grid3">
 
       <div class="card">
+        <div class="cardNumber">01</div>
         <h3>Complete Assembly</h3>
         <p>
-          Fluent supplies the required material and fabricates the assembly to the approved project requirements.
+          Fluent supplies the required material and fabricates the assembly
+          to the approved project requirements.
         </p>
       </div>
 
       <div class="card">
+        <div class="cardNumber">02</div>
         <h3>Fabrication Only</h3>
         <p>
-          Buyer-supplied material or components can be cleaned, fitted, welded, and fabricated by Fluent.
+          Buyer-supplied material or components can be cleaned, fitted,
+          welded, and fabricated by Fluent.
         </p>
       </div>
 
       <div class="card">
+        <div class="cardNumber">03</div>
         <h3>Drawing-Based</h3>
         <p>
-          Plate dimensions, piping geometry, supports, flange requirements, and other details are confirmed before release.
+          Plate dimensions, piping geometry, supports, flange requirements,
+          and other details are confirmed before release.
         </p>
       </div>
 
@@ -355,12 +683,12 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
 
     <div class="sectionHead">
       <div>
-        <div class="eyebrow">Common quote sizes</div>
+        <div class="eyebrow">Common Quote Sizes</div>
         <h2>4&quot; through 12&quot;.</h2>
       </div>
 
       <p>
-        These sizes are already supported in Fluent's ordering workflow.
+        These sizes are supported in Fluent's ordering workflow.
         They are quoted as project-specific assemblies rather than released standard drawings.
       </p>
     </div>
@@ -398,6 +726,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
       </div>
 
     </div>
+
   </div>
 </section>
 
@@ -406,7 +735,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
 
     <div class="sectionHead">
       <div>
-        <div class="eyebrow">Release requirements</div>
+        <div class="eyebrow">Release Requirements</div>
         <h2>No guessing on geometry.</h2>
       </div>
 
@@ -427,7 +756,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
           <li>Project or drawing reference</li>
           <li>Flange requirements</li>
           <li>Need-by date</li>
-          <li>Any coating, finish, inspection, or compliance requirements</li>
+          <li>Coating, finish, inspection, or compliance requirements</li>
         </ul>
       </div>
 
@@ -448,21 +777,21 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
     <div class="notice">
       <strong>Project-specific product family</strong>
       <p>
-        A standard Fluent part number should not be treated as released until a dimensioned drawing has been approved.
-        The approved drawing and project requirements govern fabrication.
+        A standard Fluent part number should not be treated as released until
+        a dimensioned drawing has been approved. The approved drawing and project
+        requirements govern fabrication.
       </p>
     </div>
 
   </div>
 </section>
 
-
 <section>
   <div class="wrap">
 
     <div class="sectionHead">
       <div>
-        <div class="eyebrow">Related products</div>
+        <div class="eyebrow">Related Products</div>
         <h2>Build the rest of the package.</h2>
       </div>
     </div>
@@ -488,19 +817,22 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
       </div>
 
     </div>
+
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
+
     <div class="ctaBox">
 
       <div>
-        <div class="eyebrow">Request pricing</div>
+        <div class="eyebrow">Request Pricing</div>
         <h2>Send the size and project drawing.</h2>
+
         <p>
           Fluent Welding can review your anti-vortex configuration and quote the assembly
-          based on the project requirements, material, quantity, and requested delivery date.
+          based on project requirements, material, quantity, and requested delivery date.
         </p>
       </div>
 
@@ -510,6 +842,7 @@ footer{background:#0f1113;color:white;padding:40px 0 24px}
       </div>
 
     </div>
+
   </div>
 </section>
 
