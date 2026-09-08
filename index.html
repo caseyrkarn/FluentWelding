@@ -122,6 +122,100 @@ img{max-width:100%;display:block}
   font-weight:750;
 }
 
+.navItem{
+  position:relative;
+}
+
+.navDropButton{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border:0;
+  background:transparent;
+  padding:12px 0;
+  font:inherit;
+  font-weight:750;
+  color:inherit;
+  cursor:pointer;
+}
+
+.navDropButton:after{
+  content:"";
+  width:7px;
+  height:7px;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+  transition:transform .18s ease;
+}
+
+.navDropdown{
+  position:absolute;
+  left:-18px;
+  top:calc(100% - 3px);
+  width:285px;
+  padding:10px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 18px 45px rgba(0,0,0,.14);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:.18s ease;
+}
+
+.navDropdown a{
+  display:block;
+  padding:11px 12px;
+  border-radius:10px;
+  color:var(--ink);
+  font-size:14px;
+  line-height:1.25;
+}
+
+.navDropdown a:hover,
+.navDropdown a:focus{
+  background:#f0eee8;
+  color:var(--accent);
+  outline:none;
+}
+
+.navItem:hover .navDropdown,
+.navItem:focus-within .navDropdown,
+.navItem.open .navDropdown{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.navItem:hover .navDropButton:after,
+.navItem:focus-within .navDropButton:after,
+.navItem.open .navDropButton:after{
+  transform:rotate(225deg) translate(-1px,-1px);
+}
+
+.navDropdown .dropLabel{
+  padding:8px 12px 6px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.navDropdown .featuredLink{
+  margin-top:5px;
+  background:#17191c;
+  color:#fff;
+}
+
+.navDropdown .featuredLink:hover,
+.navDropdown .featuredLink:focus{
+  background:#25292e;
+  color:var(--accent2);
+}
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -869,7 +963,26 @@ footer{
     </a>
 
     <div class="links">
-      <a href="#products">Products</a>
+
+      <div class="navItem" id="productsMenu">
+        <button
+          class="navDropButton"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Products
+        </button>
+
+        <div class="navDropdown" aria-label="Product pages">
+          <div class="dropLabel">Tank Products</div>
+          <a href="tank-sidewall-nozzles.html">Sidewall Nozzles</a>
+          <a href="tank-roof-nozzles.html">Roof Nozzles</a>
+          <a href="tank-funnels-and-exterior-90s.html">Interior Funnels &amp; Exterior 90s</a>
+          <a href="tank-anti-vortex.html">Anti-Vortex Assemblies</a>
+          <a class="featuredLink" href="fire-water-tank-piping.html">Fire Water Tank Piping</a>
+        </div>
+      </div>
+
       <a href="#services">Services</a>
       <a href="#work">Our Work</a>
       <a href="data-center.html">Data Center</a>
@@ -1531,6 +1644,32 @@ footer{
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const productsMenu = document.getElementById('productsMenu');
+const productsButton = productsMenu ? productsMenu.querySelector('.navDropButton') : null;
+
+if (productsMenu && productsButton) {
+  productsButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = productsMenu.classList.toggle('open');
+    productsButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!productsMenu.contains(e.target)) {
+      productsMenu.classList.remove('open');
+      productsButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      productsMenu.classList.remove('open');
+      productsButton.setAttribute('aria-expanded', 'false');
+      productsButton.focus();
+    }
+  });
+}
 
 const quoteForm = document.getElementById('quoteForm');
 const quoteSubmit = document.getElementById('quoteSubmit');
