@@ -115,6 +115,106 @@
     filter();
   }
 
+
+  // Referral intake uses the existing field names, not a new API or partner contact list.
+  function initServiceRequest() {
+    const referral = document.getElementById('serviceRequestForm');
+    if (!referral) return;
+    const type = document.getElementById('serviceType');
+    const application = document.getElementById('serviceApplication');
+    const aerial = document.getElementById('aerialRequestDetails');
+    const submit = document.getElementById('serviceSubmit');
+    const status = document.getElementById('serviceStatus');
+    const again = document.getElementById('newServiceRequest');
+    let busy = false;
+    const aerialTypes = new Set(['Drone Inspection Imagery', 'Aerial Mapping / Site Survey', 'Aerial Photography / Video']);
+    const supported = (field, value) => [...field.options].some(option => option.value === value);
+    const clean = (id, limit = 500) => (document.getElementById(id).value || '').trim().slice(0, limit);
+    const setStatus = (text, state = '') => { status.textContent = text; status.dataset.state = state; };
+    const showAerial = () => { aerial.hidden = !aerialTypes.has(type.value); };
+    const params = new URLSearchParams(location.search);
+    if (supported(type, params.get('service'))) type.value = params.get('service');
+    if (supported(application, params.get('application'))) application.value = params.get('application');
+    showAerial();
+    type.addEventListener('change', showAerial);
+    document.querySelectorAll('[data-service-prefill]').forEach(link => {
+      link.addEventListener('click', () => {
+        if (!busy && supported(type, link.dataset.servicePrefill)) {
+          type.value = link.dataset.servicePrefill;
+          showAerial();
+        }
+      });
+    });
+    referral.hidden = false;
+    again.addEventListener('click', () => {
+      if (busy) return;
+      referral.reset(); showAerial(); again.hidden = true; submit.disabled = false;
+      submit.textContent = 'Request a Connection';
+      setStatus('Enter a new connection request. Previously submitted requests are not changed.');
+      referral.elements.name.focus();
+    });
+    referral.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (busy || !referral.reportValidity()) return;
+      if (location.protocol === 'file:' || ['localhost','127.0.0.1','::1'].includes(location.hostname)) {
+        setStatus('Local preview only: no request was sent. Use the published website to request a connection.', 'warning');
+        return;
+      }
+      busy = true; referral.setAttribute('aria-busy','true'); submit.disabled = true; submit.textContent = 'Sending...';
+      setStatus('Sending the connection request to Fluent for processing...');
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 25000);
+      try {
+        // Keep the backend schema exactly compatible with the existing RFQ endpoint.
+        // A quantity of one represents one inquiry, not an order for a fabricated item.
+        const payload = new URLSearchParams();
+        for (const key of ['name','company','email','phone','shipto','requested_date']) {
+          payload.set(key, referral.elements.namedItem(key).value.trim());
+        }
+        const project = referral.elements.project.value.trim();
+        payload.set('project', 'SERVICE CONNECTION - ' + (project || type.value));
+        payload.set('item_count', '1');
+        payload.set('item_type_0', 'Other');
+        payload.set('item_size_0', 'Service referral only - no fabricated component requested');
+        payload.set('item_material_0', 'Not Sure');
+        payload.set('item_qty_0', '1');
+        payload.set('item_notes_0', 'SERVICE CONNECTION REQUEST - NOT AN ORDER\nService requested: ' + type.value);
+        const details = [
+          'SERVICE CONNECTION REQUEST - NOT AN ORDER OR BOOKING',
+          'Service requested: ' + type.value,
+          'Tank / project application: ' + (application.value || 'Not specified'),
+          'Timing: ' + (clean('serviceTiming') || 'Discuss during follow-up'),
+          'Tank size / capacity: ' + (clean('tankCapacity') || 'Not specified'),
+          'Tank construction / liquid: ' + (clean('tankDetails') || 'Not specified'),
+        ];
+        if (aerialTypes.has(type.value)) {
+          details.push('Aerial coverage / assets: ' + (clean('aerialCoverage') || 'Not specified'));
+          details.push('Aerial deliverables / use: ' + (clean('aerialDeliverables') || 'Not specified'));
+          details.push('Accuracy / survey requirements: ' + (clean('aerialAccuracy') || 'Discuss with provider'));
+        }
+        details.push('Request details:\n' + referral.elements.project_details.value.trim());
+        details.push('Acknowledgment: connection request only, not a service booking or order.');
+        details.push('Privacy: obtain customer permission before sharing contact or project details with an independent provider. This form does not grant forwarding permission.');
+        payload.set('project_details', details.join('\n\n'));
+        await fetch(referral.action, {
+          method:'POST', mode:'no-cors', credentials:'omit',
+          headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
+          body:payload, signal:controller.signal
+        });
+        // The opaque response cannot verify processing or email delivery. Retain entered data.
+        setStatus('Request sent for processing. Check your email for the Fluent request confirmation; the existing system may label it an RFQ. This is not a booking. If no confirmation arrives, call 740-606-8333 before submitting again. Your details remain here.', 'sent');
+        submit.textContent = 'Check Email for Confirmation';
+        again.hidden = false;
+      } catch (error) {
+        setStatus('We could not confirm transmission. Your details are still here. Check for a confirmation email before trying again, or call 740-606-8333.', 'warning');
+        submit.disabled = false; submit.textContent = 'Request a Connection';
+      } finally {
+        window.clearTimeout(timeout); busy = false; referral.setAttribute('aria-busy','false');
+      }
+    });
+  }
+  initServiceRequest();
+
   const form = document.getElementById('quoteForm');
   if (!form) return;
   const itemList = document.getElementById('itemList');

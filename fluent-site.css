@@ -1,4 +1,4 @@
-/* Fluent Welding - shared website styles - 20260908-r1 */
+/* Fluent Welding - shared website styles - 20260908-r2-tank-services */
 :root{--ink:#15171a;--muted:#5d646d;--paper:#f5f4f0;--panel:#fff;--line:#dcdedc;--accent:#d60043;--accent-bright:#ff5484;--max:1200px;--radius:18px;--shadow:0 20px 50px rgba(12,18,24,.10)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -220,3 +220,27 @@ section{padding:54px 0}.hero{padding:42px 0 52px}.hero-grid{grid-template-column
 @media print{.topbar,.site-header,.site-footer,.actions,.drawing-filters,.quote-layout{display:none!important}.hero{color:#111;background:#fff}.hero .lead{color:#333}body{background:#fff}section{padding:20px 0}.drawing-grid,.product-grid,.three-grid{display:block}.drawing-card{break-inside:avoid;margin-bottom:20px}.wrap{width:100%}}
 
 .anchor-alias{display:block;height:0;scroll-margin-top:115px}
+
+/* Tank Services & Connections: referrals remain separate from fabrication. */
+.menu-divider{border-top:1px solid var(--line);margin-top:9px;padding-top:8px}
+.nav-dropdown a small{display:block;color:var(--muted);font-size:11px;font-weight:450;line-height:1.5;margin-top:5px}
+.light-link{color:#ffc6d7}.light-link:hover{color:#fff}
+.network-callout{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:25px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:#fff;padding:29px 31px}
+.network-callout>div{flex:1}.network-callout h3{margin:10px 0 11px;font-size:26px}.network-callout p{max-width:760px;color:var(--muted);font-size:14px}.network-callout>.btn{flex:0 0 auto}
+.referral-strip{padding:20px 0 54px}.referral-strip .network-callout,.referral-strip .notice{margin:0}
+.network-callout.compact h2{font-size:29px;max-width:680px}
+.service-routing-note{margin:0 0 23px}
+.referral-card{display:flex;flex-direction:column;align-items:flex-start}
+.referral-card .check-list{margin:3px 0 25px;width:100%}.referral-card .check-list li{font-size:13px}
+.referral-card .text-link{margin-top:auto}
+.aerial-feature{background:linear-gradient(125deg,#15191f,#252d35);color:#fff;border-top:3px solid var(--accent)}
+.aerial-feature .eyebrow,.aerial-feature .step-num{color:#ff8aac}
+.aerial-feature .section-head>p{color:#c5d0da}
+.aerial-card{padding:28px;background:rgba(255,255,255,.04);border:1px solid #47505a;border-radius:16px;display:flex;flex-direction:column;align-items:flex-start}
+.aerial-card p{color:#c5d0da;font-size:14px}.aerial-card .text-link{color:#ffc0d3;margin-top:auto}.aerial-card .text-link:hover{color:#fff}
+.aerial-scope{margin:26px 0 0!important;color:#bdc9d5;font-size:12px;max-width:1000px;line-height:1.75}
+.referral-form-container{min-width:0}.referral-form-container>noscript>.notice{margin:28px}
+.referral-ack{display:flex;align-items:flex-start;gap:11px;line-height:1.6;font-size:13px;font-weight:600;margin-top:20px}
+.referral-ack input{flex:0 0 18px;width:18px;min-height:18px;height:18px;margin:2px 0 0;accent-color:var(--accent)}
+.referral-ack span{flex:1}
+@media(max-width:760px){.network-callout{display:block;padding:25px}.network-callout>.btn{margin-top:21px}.referral-strip{padding:16px 0 42px}.aerial-card{padding:25px}}

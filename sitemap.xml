@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://fluentwelding.com/</loc></url>
   <url><loc>https://fluentwelding.com/services.html</loc></url>
@@ -20,4 +20,4 @@
   <url><loc>https://fluentwelding.com/our-work.html</loc></url>
   <url><loc>https://fluentwelding.com/how-to-order.html</loc></url>
   <url><loc>https://fluentwelding.com/request-quote.html</loc></url>
-</urlset>
+<url><loc>https://fluentwelding.com/tank-services.html</loc></url></urlset>
