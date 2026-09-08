@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://fluentwelding.com/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://fluentwelding.com/data-center.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://fluentwelding.com/</loc></url>
+  <url><loc>https://fluentwelding.com/services.html</loc></url>
+  <url><loc>https://fluentwelding.com/water-storage-tanks.html</loc></url>
+  <url><loc>https://fluentwelding.com/wastewater-leachate-tanks.html</loc></url>
+  <url><loc>https://fluentwelding.com/process-water-tanks.html</loc></url>
+  <url><loc>https://fluentwelding.com/data-center.html</loc></url>
+  <url><loc>https://fluentwelding.com/fire-water-tank-fabrication.html</loc></url>
+  <url><loc>https://fluentwelding.com/products.html</loc></url>
+  <url><loc>https://fluentwelding.com/tank-sidewall-nozzles.html</loc></url>
+  <url><loc>https://fluentwelding.com/tank-roof-nozzles.html</loc></url>
+  <url><loc>https://fluentwelding.com/tank-funnels-and-exterior-90s.html</loc></url>
+  <url><loc>https://fluentwelding.com/tank-anti-vortex.html</loc></url>
+  <url><loc>https://fluentwelding.com/overflow-to-grade-piping.html</loc></url>
+  <url><loc>https://fluentwelding.com/pipe-spools.html</loc></url>
+  <url><loc>https://fluentwelding.com/custom-fabrication.html</loc></url>
+  <url><loc>https://fluentwelding.com/fire-water-tank-piping.html</loc></url>
+  <url><loc>https://fluentwelding.com/drawings.html</loc></url>
+  <url><loc>https://fluentwelding.com/our-work.html</loc></url>
+  <url><loc>https://fluentwelding.com/how-to-order.html</loc></url>
+  <url><loc>https://fluentwelding.com/request-quote.html</loc></url>
 </urlset>
