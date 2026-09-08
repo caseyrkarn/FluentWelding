@@ -7,7 +7,7 @@
 
 <title>Tank Sidewall Nozzles | Standard Drawings & Custom Fabrication | Fluent Welding</title>
 
-<meta name="description" content="Fluent Welding fabricates tank sidewall nozzle assemblies for bolted and welded tanks. View standard sizes, Fluent part numbers, technical drawings, material options, and request pricing online." />
+<meta name="description" content="Fluent Welding fabricates tank sidewall nozzle assemblies for bolted and welded tanks. View released standard drawings from 2 to 10 inches, plus additional 12, 14, and 16 inch sizes available by quote." />
 
 <link rel="canonical" href="https://fluentwelding.com/tank-sidewall-nozzles.html" />
 
@@ -322,6 +322,77 @@ border-bottom:0;
 font-weight:850;
 }
 
+/* ADDITIONAL SIZES */
+
+.additionalSizes{
+background:white;
+border:1px solid var(--line);
+border-radius:24px;
+padding:30px;
+margin-top:28px;
+}
+
+.additionalSizesHead{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:30px;
+margin-bottom:22px;
+}
+
+.additionalSizesHead h3{
+font-size:28px;
+margin:0 0 8px;
+}
+
+.additionalSizesHead p{
+margin:0;
+color:var(--muted);
+max-width:720px;
+}
+
+.quoteSizeGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+.quoteSize{
+border:1px solid var(--line);
+border-radius:16px;
+padding:20px;
+background:#faf9f6;
+}
+
+.quoteSize .bigSize{
+font-size:30px;
+font-weight:950;
+line-height:1;
+margin-bottom:8px;
+}
+
+.quoteSize strong{
+display:block;
+font-size:14px;
+margin-bottom:4px;
+}
+
+.quoteSize span{
+display:block;
+font-size:13px;
+color:var(--muted);
+}
+
+.quoteNotice{
+margin-top:18px;
+padding:16px 18px;
+border-left:4px solid var(--accent);
+background:#f4f1eb;
+border-radius:10px;
+font-size:14px;
+color:#555b60;
+}
+
 /* DRAWINGS */
 
 .drawingsSection{
@@ -501,6 +572,10 @@ grid-template-columns:1fr;
 grid-template-columns:1fr 1fr;
 }
 
+.quoteSizeGrid{
+grid-template-columns:1fr 1fr 1fr;
+}
+
 .links{
 display:none;
 }
@@ -513,6 +588,10 @@ display:block;
 margin-top:22px;
 }
 
+.additionalSizesHead{
+display:block;
+}
+
 }
 
 @media(max-width:620px){
@@ -523,7 +602,8 @@ width:min(100% - 28px,var(--max));
 
 .grid3,
 .gallery,
-.footerGrid{
+.footerGrid,
+.quoteSizeGrid{
 grid-template-columns:1fr;
 }
 
@@ -546,7 +626,6 @@ height:auto;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -554,7 +633,6 @@ height:auto;
 <!-- TOP BAR -->
 
 <div class="topbar">
-
 <div class="wrap">
 
 <span>
@@ -570,13 +648,11 @@ Serving customers nationwide
 </span>
 
 </div>
-
 </div>
 
 <!-- NAV -->
 
 <nav class="nav">
-
 <div class="wrap">
 
 <a href="index.html">
@@ -587,23 +663,15 @@ alt="Fluent Welding">
 </a>
 
 <div class="links">
-
 <a href="index.html">Home</a>
-
 <a href="index.html#products">Products</a>
-
 <a href="#sizes">Standard Sizes</a>
-
 <a href="#drawings">Drawings</a>
-
 <a href="data-center.html">Data Center</a>
-
 <a href="index.html#quote">Request a Quote</a>
-
 </div>
 
 </div>
-
 </nav>
 
 <main>
@@ -626,8 +694,8 @@ Tank Sidewall Nozzles
 
 <p>
 Fluent Welding fabricates sidewall nozzle assemblies for bolted and welded tank applications.
-Choose from released standard configurations or send project drawings, dimensions, material requirements,
-and specifications for custom fabrication.
+Choose from released standard configurations or send project drawings, dimensions,
+material requirements, and specifications for custom fabrication.
 </p>
 
 <div class="actions">
@@ -730,9 +798,7 @@ Nonstandard sizes, projections, flange requirements, materials, and configuratio
 
 <!-- STANDARD CONSTRUCTION -->
 
-<section
-class="specs"
-id="construction">
+<section class="specs" id="construction">
 
 <div class="wrap">
 
@@ -834,7 +900,7 @@ Alternate metals, coatings, finishes, dimensions, and project requirements can b
 
 </section>
 
-<!-- SIZE TABLE -->
+<!-- RELEASED SIZE TABLE -->
 
 <section id="sizes">
 
@@ -852,7 +918,7 @@ Standard sizes &amp; Fluent part numbers.
 
 <p>
 Reference the Fluent part number when the released standard drawing fits the project.
-Click the drawing section below to view or download the corresponding fabrication sheet.
+Click the drawing link to view or download the corresponding fabrication sheet.
 </p>
 
 </div>
@@ -864,23 +930,10 @@ Click the drawing section below to view or download the corresponding fabricatio
 <thead>
 
 <tr>
-
-<th>
-Nominal Size
-</th>
-
-<th>
-Product
-</th>
-
-<th>
-Fluent Part Number
-</th>
-
-<th>
-Drawing
-</th>
-
+<th>Nominal Size</th>
+<th>Product</th>
+<th>Fluent Part Number</th>
+<th>Drawing</th>
 </tr>
 
 </thead>
@@ -888,128 +941,151 @@ Drawing
 <tbody>
 
 <tr>
-
-<td>
-2"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-02-304
-</td>
-
-<td>
-<a href="#sw02">View</a>
-</td>
-
+<td>2"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-02-304</td>
+<td><a href="#sw02">View</a></td>
 </tr>
 
 <tr>
-
-<td>
-3"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-03-304
-</td>
-
-<td>
-<a href="#sw03">View</a>
-</td>
-
+<td>3"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-03-304</td>
+<td><a href="#sw03">View</a></td>
 </tr>
 
 <tr>
-
-<td>
-4"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-04-304
-</td>
-
-<td>
-<a href="#sw04">View</a>
-</td>
-
+<td>4"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-04-304</td>
+<td><a href="#sw04">View</a></td>
 </tr>
 
 <tr>
-
-<td>
-6"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-06-304
-</td>
-
-<td>
-<a href="#sw06">View</a>
-</td>
-
+<td>6"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-06-304</td>
+<td><a href="#sw06">View</a></td>
 </tr>
 
 <tr>
-
-<td>
-8"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-08-304
-</td>
-
-<td>
-<a href="#sw08">View</a>
-</td>
-
+<td>8"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-08-304</td>
+<td><a href="#sw08">View</a></td>
 </tr>
 
 <tr>
-
-<td>
-10"
-</td>
-
-<td>
-Single Sidewall Nozzle
-</td>
-
-<td class="part">
-FW-SW1-10-304
-</td>
-
-<td>
-<a href="#sw10">View</a>
-</td>
-
+<td>10"</td>
+<td>Single Sidewall Nozzle</td>
+<td class="part">FW-SW1-10-304</td>
+<td><a href="#sw10">View</a></td>
 </tr>
 
 </tbody>
 
 </table>
+
+</div>
+
+<!-- ADDITIONAL SIZES -->
+
+<div class="additionalSizes">
+
+<div class="additionalSizesHead">
+
+<div>
+
+<h3>
+Additional Sidewall Nozzle Sizes
+</h3>
+
+<p>
+Fluent also fabricates larger sidewall nozzle sizes that are not currently published as released standard drawing configurations.
+These sizes are quoted and released after project requirements and fabrication geometry are confirmed.
+</p>
+
+</div>
+
+<a
+class="btn primary"
+href="index.html#quote">
+Request Pricing
+</a>
+
+</div>
+
+<div class="quoteSizeGrid">
+
+<div class="quoteSize">
+
+<div class="bigSize">
+12"
+</div>
+
+<strong>
+Sidewall Nozzle
+</strong>
+
+<span>
+Available by quote
+</span>
+
+<span>
+Drawing confirmation required
+</span>
+
+</div>
+
+<div class="quoteSize">
+
+<div class="bigSize">
+14"
+</div>
+
+<strong>
+Sidewall Nozzle
+</strong>
+
+<span>
+Available by quote
+</span>
+
+<span>
+Drawing confirmation required
+</span>
+
+</div>
+
+<div class="quoteSize">
+
+<div class="bigSize">
+16"
+</div>
+
+<strong>
+Sidewall Nozzle
+</strong>
+
+<span>
+Available by quote
+</span>
+
+<span>
+Drawing confirmation required
+</span>
+
+</div>
+
+</div>
+
+<div class="quoteNotice">
+
+<strong>Why aren't drawings shown for these sizes?</strong><br>
+The 12", 14", and 16" sidewall nozzles are available for fabrication, but a controlled released standard drawing is not currently published on this page.
+Flange geometry, projection, material, and project-specific requirements are confirmed prior to fabrication release.
+
+</div>
 
 </div>
 
@@ -1019,9 +1095,7 @@ FW-SW1-10-304
 
 <!-- STANDARD DRAWINGS -->
 
-<section
-class="drawingsSection"
-id="drawings">
+<section class="drawingsSection" id="drawings">
 
 <div class="wrap">
 
@@ -1047,9 +1121,7 @@ Custom or project-specific configurations require drawing review before fabricat
 
 <!-- 2 INCH -->
 
-<article
-class="drawingCard"
-id="sw02">
+<article class="drawingCard" id="sw02">
 
 <a
 class="drawingPreview"
@@ -1110,9 +1182,7 @@ Request Pricing
 
 <!-- 3 INCH -->
 
-<article
-class="drawingCard"
-id="sw03">
+<article class="drawingCard" id="sw03">
 
 <a
 class="drawingPreview"
@@ -1173,9 +1243,7 @@ Request Pricing
 
 <!-- 4 INCH -->
 
-<article
-class="drawingCard"
-id="sw04">
+<article class="drawingCard" id="sw04">
 
 <a
 class="drawingPreview"
@@ -1236,9 +1304,7 @@ Request Pricing
 
 <!-- 6 INCH -->
 
-<article
-class="drawingCard"
-id="sw06">
+<article class="drawingCard" id="sw06">
 
 <a
 class="drawingPreview"
@@ -1299,9 +1365,7 @@ Request Pricing
 
 <!-- 8 INCH -->
 
-<article
-class="drawingCard"
-id="sw08">
+<article class="drawingCard" id="sw08">
 
 <a
 class="drawingPreview"
@@ -1362,9 +1426,7 @@ Request Pricing
 
 <!-- 10 INCH -->
 
-<article
-class="drawingCard"
-id="sw10">
+<article class="drawingCard" id="sw10">
 
 <a
 class="drawingPreview"
@@ -1510,9 +1572,9 @@ Need sidewall nozzles priced?
 </h2>
 
 <p>
-Send the Fluent part number when a standard configuration fits the project,
-or provide the size, quantity, material, flange requirements, project location,
-requested delivery date, and applicable drawings for a custom configuration.
+Send the Fluent part number when a released standard configuration fits the project.
+For larger or custom configurations, provide the size, quantity, material, flange requirements,
+projection, project location, requested delivery date, and applicable drawings.
 </p>
 
 </div>
