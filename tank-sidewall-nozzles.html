@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Tank Sidewall Nozzles | Fluent Welding</title>
+
+<meta name="description" content="Fluent Welding fabricates tank sidewall nozzle assemblies in standard and custom configurations. Released 304 stainless steel standards from 2 to 10 inches, plus project-specific fabrication." />
+
+<link rel="canonical" href="https://fluentwelding.com/tank-sidewall-nozzles.html" />
+
+<style>
+:root{
+  --ink:#111316;
+  --muted:#6e747b;
+  --paper:#f4f3ef;
+  --panel:#ffffff;
+  --steel:#22262b;
+  --line:#d9d6ce;
+  --accent:#e10047;
+  --accent2:#ff3a73;
+  --radius:20px;
+  --max:1180px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.5;
+}
+
+a{color:inherit;text-decoration:none}
+
+img{max-width:100%;display:block}
+
+.wrap{
+  width:min(var(--max),calc(100% - 40px));
+  margin:auto;
+}
+
+.topbar{
+  background:#0e1012;
+  color:#d7dade;
+  font-size:13px;
+}
+
+.topbar .wrap{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:9px 0;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(244,243,239,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 0;
+}
+
+.brand-logo{
+  width:290px;
+  max-height:72px;
+  object-fit:contain;
+}
+
+.links{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:14px;
+  font-weight:750;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:12px 19px;
+  font-weight:850;
+  border:1px solid transparent;
+  transition:.2s ease;
+}
+
+.btn.primary{
+  background:var(--accent);
+  color:white;
+}
+
+.btn.primary:hover{
+  background:var(--accent2);
+  transform:translateY(-1px);
+}
+
+.btn.dark{
+  background:#17191c;
+  color:white;
+}
+
+.hero{
+  background:
+    radial-gradient(circle at 85% 20%,rgba(225,0,71,.18),transparent 34%),
+    linear-gradient(135deg,#0f1113 0%,#1a1e22 58%,#252a30 100%);
+  color:white;
+}
+
+.hero .wrap{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:55px;
+  align-items:center;
+  padding:80px 0;
+}
+
+.eyebrow{
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:900;
+  color:var(--accent2);
+}
+
+.eyebrow:before{
+  content:"";
+  width:34px;
+  height:2px;
+  background:var(--accent);
+}
+
+h1{
+  font-size:clamp(42px,5.7vw,76px);
+  line-height:.98;
+  letter-spacing:-.05em;
+  margin:16px 0 22px;
+}
+
+.hero p{
+  color:#c7cbd0;
+  font-size:19px;
+  max-width:700px;
+}
+
+.hero-image{
+  background:white;
+  border-radius:28px;
+  padding:18px;
+  box-shadow:0 30px 70px rgba(0,0,0,.28);
+}
+
+.hero-image img{
+  width:100%;
+  max-height:475px;
+  object-fit:contain;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+section{
+  padding:76px 0;
+}
+
+.sectionHead{
+  margin-bottom:30px;
+}
+
+.sectionHead h2{
+  font-size:clamp(32px,4vw,52px);
+  line-height:1.03;
+  letter-spacing:-.04em;
+  margin:8px 0 12px;
+}
+
+.sectionHead p{
+  max-width:760px;
+  color:var(--muted);
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+}
+
+.card h3{
+  margin:0 0 8px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+}
+
+.specs{
+  background:#17191c;
+  color:white;
+}
+
+.specs .sectionHead p{
+  color:#b9bdc2;
+}
+
+.specCard{
+  background:#202328;
+  border:1px solid #34383e;
+  border-radius:20px;
+  padding:24px;
+}
+
+.specCard strong{
+  display:block;
+  color:var(--accent2);
+  margin-bottom:7px;
+}
+
+.specCard span{
+  color:#d5d8db;
+}
+
+.tableWrap{
+  overflow-x:auto;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:18px 20px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+
+th{
+  background:#17191c;
+  color:white;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+.part{
+  font-weight:850;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.gallery figure{
+  margin:0;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.gallery img{
+  width:100%;
+  height:300px;
+  object-fit:contain;
+  padding:12px;
+}
+
+.gallery figcaption{
+  border-top:1px solid var(--line);
+  padding:15px 18px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.callout{
+  background:#151719;
+  color:white;
+  border-radius:28px;
+  padding:40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:35px;
+}
+
+.callout h2{
+  font-size:38px;
+  margin:0 0 10px;
+}
+
+.callout p{
+  margin:0;
+  color:#c2c6ca;
+  max-width:680px;
+}
+
+footer{
+  background:#0f1113;
+  color:white;
+  padding:42px 0 24px;
+}
+
+.footerGrid{
+  display:grid;
+  grid-template-columns:1.4fr .6fr .6fr;
+  gap:30px;
+}
+
+.footer-logo{
+  width:330px;
+  max-width:100%;
+  background:white;
+  border-radius:8px;
+  padding:4px;
+}
+
+.footerGrid p,
+.footerGrid a{
+  color:#aeb3b8;
+  font-size:14px;
+}
+
+.fine{
+  border-top:1px solid #292d31;
+  margin-top:30px;
+  padding-top:20px;
+  color:#777e85;
+  font-size:12px;
+}
+
+@media(max-width:900px){
+  .hero .wrap{
+    grid-template-columns:1fr;
+  }
+
+  .grid3,
+  .gallery{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .links{
+    display:none;
+  }
+
+  .callout{
+    display:block;
+  }
+
+  .callout .btn{
+    margin-top:22px;
+  }
+}
+
+@media(max-width:620px){
+  .wrap{
+    width:min(100% - 28px,var(--max));
+  }
+
+  .grid3,
+  .gallery,
+  .footerGrid{
+    grid-template-columns:1fr;
+  }
+
+  .hero .wrap{
+    padding:55px 0;
+  }
+
+  section{
+    padding:58px 0;
+  }
+
+  .brand-logo{
+    width:205px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span><strong>AWS Certified</strong> &nbsp;•&nbsp; Tank accessories &amp; custom fabrication</span>
+    <span><a href="tel:+17406068333">740-606-8333</a></span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+
+    <a href="index.html">
+      <img class="brand-logo" src="fluent-welding-logo.png" alt="Fluent Welding">
+    </a>
+
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="#sizes">Standard Sizes</a>
+      <a href="#construction">Construction</a>
+      <a href="data-center.html">Data Center</a>
+      <a href="index.html#quote">Request a Quote</a>
+    </div>
+
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap">
+
+    <div>
+
+      <div class="eyebrow">Tank Components</div>
+
+      <h1>Tank Sidewall Nozzles</h1>
+
+      <p>
+        Fluent Welding fabricates sidewall nozzle assemblies for bolted and welded tank applications.
+        Choose from released standard configurations or send project drawings and dimensions for custom fabrication.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="index.html#quote">Request Pricing</a>
+        <a class="btn dark" href="#sizes">View Standard Sizes</a>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="sidewall-nozzle-1.png" alt="Fluent Welding fabricated tank sidewall nozzle assembly">
+    </div>
+
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div class="eyebrow">Sidewall nozzle fabrication</div>
+      <h2>Standard when possible. Custom when required.</h2>
+      <p>
+        Fluent Welding supports repeatable standard tank nozzle assemblies as well as project-specific configurations.
+        Buyers can reference a released Fluent part number or submit a drawing, dimension list, or project requirement for review.
+      </p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="card">
+        <h3>Complete Assemblies</h3>
+        <p>Fluent can supply the required material and complete the fabrication under one order.</p>
+      </div>
+
+      <div class="card">
+        <h3>Fabrication Only</h3>
+        <p>Buyer-furnished material can be fabricated when required by the project or procurement requirements.</p>
+      </div>
+
+      <div class="card">
+        <h3>Custom Configurations</h3>
+        <p>Nonstandard dimensions and configurations can be reviewed from project-specific drawings and requirements.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="specs" id="construction">
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div class="eyebrow">Standard construction</div>
+      <h2>Built around real tank installation requirements.</h2>
+      <p>
+        Released Fluent sidewall nozzle standards are based on controlled fabrication drawings.
+        Project-specific requirements are confirmed during quoting and drawing review.
+      </p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="specCard">
+        <strong>Released Material</strong>
+        <span>304 stainless steel on released standard drawings. 316 stainless available by quote and drawing confirmation.</span>
+      </div>
+
+      <div class="specCard">
+        <strong>Pipe</strong>
+        <span>Schedule 10 stainless pipe is standard on released source details.</span>
+      </div>
+
+      <div class="specCard">
+        <strong>Non-Tank Connection</strong>
+        <span>150# raised-face slip-on flange standard unless the approved quote or drawing states otherwise.</span>
+      </div>
+
+      <div class="specCard">
+        <strong>Compliance</strong>
+        <span>Import, Domestic, AIS, and other sourcing requirements can be identified during RFQ and PO release.</span>
+      </div>
+
+      <div class="specCard">
+        <strong>Supply Route</strong>
+        <span>Available as a complete assembly or fabrication-only using buyer-furnished material.</span>
+      </div>
+
+      <div class="specCard">
+        <strong>Custom Requirements</strong>
+        <span>Alternate materials, finishes, dimensions, and project requirements can be reviewed for custom fabrication.</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="sizes">
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div class="eyebrow">Released standards</div>
+      <h2>Standard sizes &amp; Fluent part numbers.</h2>
+      <p>
+        Reference the Fluent part number when the released standard drawing fits your project.
+      </p>
+    </div>
+
+    <div class="tableWrap">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nominal Size</th>
+            <th>Product</th>
+            <th>Fluent Part Number</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>2"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-02-304</td>
+          </tr>
+
+          <tr>
+            <td>3"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-03-304</td>
+          </tr>
+
+          <tr>
+            <td>4"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-04-304</td>
+          </tr>
+
+          <tr>
+            <td>6"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-06-304</td>
+          </tr>
+
+          <tr>
+            <td>8"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-08-304</td>
+          </tr>
+
+          <tr>
+            <td>10"</td>
+            <td>Single Sidewall Nozzle</td>
+            <td class="part">FW-SW1-10-304</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div class="eyebrow">Fabrication examples</div>
+      <h2>Tank-ready components.</h2>
+      <p>Examples of Fluent Welding sidewall nozzle fabrication and related assemblies.</p>
+    </div>
+
+    <div class="gallery">
+
+      <figure>
+        <img src="sidewall-nozzle-1.png" alt="Large Fluent Welding tank sidewall nozzle">
+        <figcaption>Fabricated sidewall nozzle assembly.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="sidewall-nozzle-2.png" alt="Fluent Welding stainless steel sidewall nozzle">
+        <figcaption>Tank-side fabricated nozzle component.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="sidewall-nozzle.png" alt="Fluent Welding sidewall nozzle detail">
+        <figcaption>Sidewall nozzle fabrication detail.</figcaption>
+      </figure>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="callout">
+
+      <div>
+        <h2>Need sidewall nozzles priced?</h2>
+        <p>
+          Send the size, quantity, material requirement, project location, requested delivery date, and any applicable drawings or specifications.
+        </p>
+      </div>
+
+      <a class="btn primary" href="index.html#quote">Request a Quote</a>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+
+    <div class="footerGrid">
+
+      <div>
+        <a href="index.html">
+          <img class="footer-logo" src="fluent-welding-logo.png" alt="Fluent Welding">
+        </a>
+
+        <p>
+          Tank nozzles, fabricated accessories, pipe assemblies, and custom metal components for industrial customers.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navigate</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="index.html#products">Products</a></p>
+        <p><a href="data-center.html">Data Center</a></p>
+        <p><a href="index.html#quote">Request a Quote</a></p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p><a href="tel:+17406068333">740-606-8333</a></p>
+        <p>fluentwelding.com</p>
+        <p><strong style="color:white">AWS Certified</strong></p>
+      </div>
+
+    </div>
+
+    <div class="fine">
+      © <span id="year"></span> Fluent Welding. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
