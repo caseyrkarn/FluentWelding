@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Anti-Vortex Assemblies for Storage Tanks | Fluent Welding</title>
+<meta name="description" content="Fluent Welding fabricates anti-vortex assemblies for storage tank applications in common sizes with project-specific geometry, materials, and fabrication requirements." />
+<link rel="canonical" href="https://fluentwelding.com/tank-anti-vortex.html" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Tank Anti-Vortex Assembly Fabrication",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Fluent Welding",
+    "telephone": "+17406068333",
+    "url": "https://fluentwelding.com/"
+  },
+  "areaServed": "United States",
+  "description": "Project-specific anti-vortex assembly fabrication for storage tank applications."
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23151618%22/><path d=%22M17 45V18h30v7H25v5h18v7H25v8z%22 fill=%22%23e10047%22/></svg>">
+
+<style>
+:root{
+  --ink:#111316;
+  --muted:#6e747b;
+  --paper:#f4f3ef;
+  --panel:#ffffff;
+  --steel:#22262b;
+  --line:#d9d6ce;
+  --accent:#e10047;
+  --accent2:#ff3a73;
+  --shadow:0 18px 50px rgba(0,0,0,.10);
+  --radius:20px;
+  --max:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+
+.topbar{background:#0e1012;color:#d7dade;font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:9px 0}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(244,243,239,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
+.brand{display:flex;align-items:center;font-weight:900}
+.brand-logo{width:290px;max-height:72px;object-fit:contain}
+.links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:750}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:850;
+  border:1px solid transparent;
+  transition:.2s ease;
+  cursor:pointer;
+}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn.dark{background:#17191c;color:#fff}
+.btn.outline{border-color:#c9c7c0;background:#fff}
+
+.hero{
+  background:
+    radial-gradient(circle at 85% 20%,rgba(225,0,71,.18),transparent 34%),
+    linear-gradient(135deg,#0f1113 0%,#1a1e22 58%,#252a30 100%);
+  color:white;
+}
+.hero .wrap{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:48px;
+  align-items:center;
+  padding:76px 0;
+}
+.eyebrow{
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:900;
+  color:var(--accent2);
+}
+.eyebrow:before{content:"";width:34px;height:2px;background:var(--accent)}
+h1{
+  font-size:clamp(42px,5.5vw,72px);
+  line-height:1;
+  letter-spacing:-.05em;
+  margin:16px 0 20px;
+}
+.hero p{font-size:19px;color:#c7cbd0;max-width:690px;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.heroCard{
+  background:#fff;
+  border-radius:28px;
+  padding:24px;
+  box-shadow:0 34px 80px rgba(0,0,0,.28);
+}
+.heroCard img{
+  width:100%;
+  max-height:470px;
+  object-fit:contain;
+  background:#fafaf8;
+  border-radius:18px;
+}
+
+section{padding:76px 0}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+.sectionHead h2{
+  font-size:clamp(32px,4vw,50px);
+  line-height:1.04;
+  letter-spacing:-.04em;
+  margin:7px 0 0;
+}
+.sectionHead p{max-width:540px;color:var(--muted);margin:0}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+}
+.card h3{margin:0 0 8px;font-size:22px}
+.card p{margin:0;color:var(--muted)}
+
+.dark{background:#17191c;color:#fff}
+.dark .sectionHead p{color:#b7bbc0}
+
+.sizeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.sizeCard{
+  border:1px solid #34383e;
+  background:#202328;
+  border-radius:20px;
+  padding:24px;
+  text-align:center;
+}
+.sizeCard strong{display:block;font-size:30px;margin-bottom:7px}
+.sizeCard span{display:block;color:#bfc3c7;font-size:13px}
+.quoteTag{
+  display:inline-block;
+  margin-top:12px;
+  color:var(--accent2);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.notice{
+  margin-top:22px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-left:5px solid var(--accent);
+  border-radius:16px;
+  padding:20px 22px;
+}
+.notice strong{display:block;margin-bottom:5px}
+.notice p{margin:0;color:var(--muted)}
+
+.details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.detailBox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+}
+.detailBox h3{margin-top:0;font-size:24px}
+.detailBox ul{margin-bottom:0;padding-left:20px;color:#555b60}
+
+.imageSection{background:#e9e7e1}
+.imageBox{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+.imageBox img{
+  max-height:580px;
+  margin:auto;
+  object-fit:contain;
+}
+.caption{margin-top:14px;color:var(--muted);font-size:13px;text-align:center}
+
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.relatedCard{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+}
+.relatedCard h3{margin:0 0 8px}
+.relatedCard p{margin:0 0 18px;color:var(--muted)}
+
+.cta{
+  background:linear-gradient(135deg,#111316,#252a30);
+  color:white;
+}
+.ctaBox{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+.cta h2{font-size:clamp(32px,4vw,50px);margin:0 0 10px;letter-spacing:-.04em}
+.cta p{color:#c4c8cc;margin:0;max-width:650px}
+
+footer{background:#0f1113;color:white;padding:40px 0 24px}
+.footerGrid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:30px}
+.footerGrid p,.footerGrid a{color:#aeb3b8;font-size:14px}
+.footer-logo{width:330px;max-width:100%;background:white;border-radius:8px;padding:4px}
+.fine{border-top:1px solid #292d31;margin-top:30px;padding-top:20px;color:#777e85;font-size:12px}
+
+.mobile{display:none}
+
+@media (max-width:900px){
+  .links{display:none}
+  .mobile{display:inline-flex}
+  .hero .wrap{grid-template-columns:1fr}
+  .grid3,.related{grid-template-columns:1fr 1fr}
+  .sizeGrid{grid-template-columns:repeat(3,1fr)}
+  .details{grid-template-columns:1fr}
+  .footerGrid{grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:620px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  .topbar .wrap{justify-content:center}
+  .topbar .wrap span:last-child{display:none}
+  .grid3,.related,.sizeGrid,.footerGrid{grid-template-columns:1fr}
+  .sectionHead,.ctaBox{display:block}
+  .cta .actions{margin-top:22px}
+  .brand-logo{width:205px}
+  section{padding:60px 0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span><strong>AWS Certified</strong> &nbsp;•&nbsp; Custom fabrication built around your project.</span>
+    <span><a href="tel:+17406068333">740-606-8333</a> &nbsp;•&nbsp; Serving industrial &amp; commercial customers</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Fluent Welding home">
+      <img class="brand-logo" src="fluent-welding-logo.png" alt="Fluent Welding logo">
+    </a>
+
+    <div class="links">
+      <a href="index.html#products">Products</a>
+      <a href="tank-sidewall-nozzles.html">Sidewall Nozzles</a>
+      <a href="tank-roof-nozzles.html">Roof Nozzles</a>
+      <a href="tank-funnels-and-exterior-90s.html">Funnels &amp; 90s</a>
+      <a href="index.html#quote">Request a Quote</a>
+    </div>
+
+    <a class="btn primary mobile" href="index.html#quote">Get Quote</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Tank Accessories</div>
+      <h1>Anti-Vortex Assemblies</h1>
+      <p>
+        Fabricated anti-vortex assemblies for storage tank applications.
+        Fluent Welding can build complete assemblies or fabricate from buyer-supplied material,
+        with final geometry confirmed from the project drawing before release.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="index.html#quote">Request Pricing</a>
+        <a class="btn dark" href="#sizes">View Common Sizes</a>
+      </div>
+    </div>
+
+    <div class="heroCard">
+      <img src="anti-vortex-with-plate.png" alt="Fluent Welding anti-vortex assembly with plate">
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div>
+        <div class="eyebrow">Fabrication options</div>
+        <h2>Built around the project.</h2>
+      </div>
+
+      <p>
+        Anti-vortex assemblies are treated as project-specific fabrication.
+        Size alone does not establish the final geometry, so the approved drawing governs fabrication.
+      </p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="card">
+        <h3>Complete Assembly</h3>
+        <p>
+          Fluent supplies the required material and fabricates the assembly to the approved project requirements.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Fabrication Only</h3>
+        <p>
+          Buyer-supplied material or components can be cleaned, fitted, welded, and fabricated by Fluent.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Drawing-Based</h3>
+        <p>
+          Plate dimensions, piping geometry, supports, flange requirements, and other details are confirmed before release.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="sizes">
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div>
+        <div class="eyebrow">Common quote sizes</div>
+        <h2>4&quot; through 12&quot;.</h2>
+      </div>
+
+      <p>
+        These sizes are already supported in Fluent's ordering workflow.
+        They are quoted as project-specific assemblies rather than released standard drawings.
+      </p>
+    </div>
+
+    <div class="sizeGrid">
+
+      <div class="sizeCard">
+        <strong>4&quot;</strong>
+        <span>Anti-vortex assembly</span>
+        <div class="quoteTag">Drawing confirmation required</div>
+      </div>
+
+      <div class="sizeCard">
+        <strong>6&quot;</strong>
+        <span>Anti-vortex assembly</span>
+        <div class="quoteTag">Drawing confirmation required</div>
+      </div>
+
+      <div class="sizeCard">
+        <strong>8&quot;</strong>
+        <span>Anti-vortex assembly</span>
+        <div class="quoteTag">Drawing confirmation required</div>
+      </div>
+
+      <div class="sizeCard">
+        <strong>10&quot;</strong>
+        <span>Anti-vortex assembly</span>
+        <div class="quoteTag">Drawing confirmation required</div>
+      </div>
+
+      <div class="sizeCard">
+        <strong>12&quot;</strong>
+        <span>Anti-vortex assembly</span>
+        <div class="quoteTag">Drawing confirmation required</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div>
+        <div class="eyebrow">Release requirements</div>
+        <h2>No guessing on geometry.</h2>
+      </div>
+
+      <p>
+        Anti-vortex configurations are not published as released standard dimensional drawings.
+        Fluent confirms the fabrication drawing before manufacturing.
+      </p>
+    </div>
+
+    <div class="details">
+
+      <div class="detailBox">
+        <h3>Information to send</h3>
+        <ul>
+          <li>Nominal connection size</li>
+          <li>Quantity</li>
+          <li>Material requirement</li>
+          <li>Project or drawing reference</li>
+          <li>Flange requirements</li>
+          <li>Need-by date</li>
+          <li>Any coating, finish, inspection, or compliance requirements</li>
+        </ul>
+      </div>
+
+      <div class="detailBox">
+        <h3>Fluent confirms</h3>
+        <ul>
+          <li>Plate and support geometry</li>
+          <li>Pipe and fitting configuration</li>
+          <li>Face-to-face or overall dimensions where applicable</li>
+          <li>Material and component requirements</li>
+          <li>Fabrication route</li>
+          <li>Final drawing before release</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <strong>Project-specific product family</strong>
+      <p>
+        A standard Fluent part number should not be treated as released until a dimensioned drawing has been approved.
+        The approved drawing and project requirements govern fabrication.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="imageSection">
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div>
+        <div class="eyebrow">Example fabrication</div>
+        <h2>Anti-vortex with plate.</h2>
+      </div>
+
+      <p>
+        Example imagery is provided to show the product family.
+        Final dimensions and configuration are established by the project-specific drawing.
+      </p>
+    </div>
+
+    <div class="imageBox">
+      <img src="anti-vortex-with-plate.png" alt="Example Fluent Welding anti-vortex assembly with plate">
+      <div class="caption">Example anti-vortex assembly. Project drawing governs final fabrication.</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="sectionHead">
+      <div>
+        <div class="eyebrow">Related products</div>
+        <h2>Build the rest of the package.</h2>
+      </div>
+    </div>
+
+    <div class="related">
+
+      <div class="relatedCard">
+        <h3>Sidewall Nozzles</h3>
+        <p>Released standard drawings plus additional sizes available by quote.</p>
+        <a class="btn outline" href="tank-sidewall-nozzles.html">View Sidewall Nozzles</a>
+      </div>
+
+      <div class="relatedCard">
+        <h3>Roof Nozzles</h3>
+        <p>Standard roof nozzle drawings with custom sizes and geometry available.</p>
+        <a class="btn outline" href="tank-roof-nozzles.html">View Roof Nozzles</a>
+      </div>
+
+      <div class="relatedCard">
+        <h3>Funnels &amp; Exterior 90s</h3>
+        <p>Internal funnels and exterior 90 assemblies with released standard drawings.</p>
+        <a class="btn outline" href="tank-funnels-and-exterior-90s.html">View Funnels &amp; 90s</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="ctaBox">
+
+      <div>
+        <div class="eyebrow">Request pricing</div>
+        <h2>Send the size and project drawing.</h2>
+        <p>
+          Fluent Welding can review your anti-vortex configuration and quote the assembly
+          based on the project requirements, material, quantity, and requested delivery date.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="index.html#quote">Request a Quote</a>
+        <a class="btn dark" href="tel:+17406068333">740-606-8333</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+
+    <div class="footerGrid">
+
+      <div>
+        <a class="brand" href="index.html">
+          <img class="footer-logo" src="fluent-welding-logo.png" alt="Fluent Welding">
+        </a>
+
+        <p>
+          AWS-certified fabrication of tank accessories, pipe assemblies,
+          and custom metal components.
+        </p>
+      </div>
+
+      <div>
+        <h4>Products</h4>
+        <p><a href="tank-sidewall-nozzles.html">Sidewall Nozzles</a></p>
+        <p><a href="tank-roof-nozzles.html">Roof Nozzles</a></p>
+        <p><a href="tank-funnels-and-exterior-90s.html">Funnels &amp; Exterior 90s</a></p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p><a href="tel:+17406068333">740-606-8333</a></p>
+        <p><a href="mailto:sales@fluentwelding.com">sales@fluentwelding.com</a></p>
+        <p><a href="index.html#quote">Request a Quote</a></p>
+      </div>
+
+    </div>
+
+    <div class="fine">
+      © <span id="year"></span> Fluent Welding. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
