@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -70,8 +70,8 @@
 </script>
 
 <script
-  defer=""
-  src="fluent-site.js?v=20260908-r2-tank-services">
+  defer
+  src="fluent-site.js?v=20260916-r3-quote-sizes">
 </script>
 
 </head>
@@ -82,7 +82,9 @@
   Skip to content
 </a>
 
+
 <div class="topbar">
+
   <div class="wrap">
 
     <span>
@@ -94,6 +96,7 @@
     </a>
 
   </div>
+
 </div>
 
 
@@ -119,7 +122,7 @@
       aria-controls="main-nav"
       aria-expanded="false"
       class="mobile-toggle"
-      hidden=""
+      hidden
       type="button">
 
       Menu
@@ -139,7 +142,7 @@
 
       <div
         class="nav-group"
-        data-nav-group="">
+        data-nav-group>
 
         <button
           aria-controls="nav-services"
@@ -159,7 +162,7 @@
 
         <div
           class="nav-dropdown"
-          hidden=""
+          hidden
           id="nav-services">
 
           <p class="menu-label">
@@ -222,19 +225,12 @@
 
         </div>
 
-
-        <noscript>
-          <a href="services.html">
-            Browse services
-          </a>
-        </noscript>
-
       </div>
 
 
       <div
         class="nav-group"
-        data-nav-group="">
+        data-nav-group>
 
         <button
           aria-controls="nav-products"
@@ -254,7 +250,7 @@
 
         <div
           class="nav-dropdown"
-          hidden=""
+          hidden
           id="nav-products">
 
           <p class="menu-label">
@@ -283,7 +279,7 @@
 
             <li>
               <a href="tank-funnels-and-exterior-90s.html">
-                Internal Funnels &amp; Exterior 90s
+                Internal Funnels &amp; External 90s
               </a>
             </li>
 
@@ -321,38 +317,27 @@
 
         </div>
 
-
-        <noscript>
-          <a href="products.html">
-            Browse products
-          </a>
-        </noscript>
-
       </div>
 
 
-      <a
-        class="nav-link"
-        href="drawings.html">
+      <a class="nav-link" href="drawings.html">
         Drawings
       </a>
 
-      <a
-        class="nav-link"
-        href="our-work.html">
+      <a class="nav-link" href="our-work.html">
         Our Work
       </a>
 
-      <a
-        class="nav-link"
-        href="how-to-order.html">
+      <a class="nav-link" href="how-to-order.html">
         How to Order
       </a>
 
       <a
         class="btn primary nav-quote"
         href="request-quote.html">
+
         Request a Quote
+
       </a>
 
     </nav>
@@ -477,8 +462,8 @@
         </h2>
 
         <p>
-          Use a published Fluent part number when the drawing fits,
-          or describe the custom component you need.
+          Choose a standard product and size when one applies.
+          Custom and nonstandard requirements will be reviewed before quotation.
         </p>
 
         <p>
@@ -540,7 +525,7 @@
               <input
                 autocomplete="name"
                 name="name"
-                required=""
+                required
               />
 
             </label>
@@ -553,7 +538,7 @@
               <input
                 autocomplete="organization"
                 name="company"
-                required=""
+                required
               />
 
             </label>
@@ -566,7 +551,7 @@
               <input
                 autocomplete="email"
                 name="email"
-                required=""
+                required
                 type="email"
               />
 
@@ -580,7 +565,7 @@
               <input
                 autocomplete="tel"
                 name="phone"
-                required=""
+                required
                 type="tel"
               />
 
@@ -606,8 +591,7 @@
 
               Tank application
 
-              <select
-                id="applicationContext">
+              <select id="applicationContext">
 
                 <option value="">
                   Select an application...
@@ -652,15 +636,49 @@
                 required>
 
                 <option value="">
-                  Confirm during quoting
+                  Select supply route...
                 </option>
 
-                <option>
+                <option value="Complete assembly - Fluent supplies material">
                   Complete assembly - Fluent supplies material
                 </option>
 
-                <option>
+                <option value="Fabrication only - buyer supplies material">
                   Fabrication only - buyer supplies material
+                </option>
+
+              </select>
+
+            </label>
+
+
+            <label>
+
+              Material / compliance
+
+              <select
+                id="complianceContext"
+                name="compliance"
+                required>
+
+                <option value="">
+                  Select compliance...
+                </option>
+
+                <option value="Import acceptable">
+                  Import acceptable
+                </option>
+
+                <option value="Domestic required">
+                  Domestic required
+                </option>
+
+                <option value="AIS required">
+                  AIS required
+                </option>
+
+                <option value="Buyer-furnished">
+                  Buyer-furnished
                 </option>
 
               </select>
@@ -717,8 +735,8 @@
 
 
           <p class="form-help">
-            Add one line for each component.
-            Put the part number or drawing revision in the item notes.
+            Standard products show only the configured standard sizes.
+            Choose Custom Fabrication or Other for nonstandard geometry.
           </p>
 
 
@@ -747,8 +765,9 @@
                   Product / fabrication type
 
                   <select
+                    class="item-product"
                     name="item_type_0"
-                    required="">
+                    required>
 
                     <option value="">
                       Select...
@@ -767,11 +786,11 @@
                     </option>
 
                     <option>
-                      Interior Funnel
+                      Internal Funnel
                     </option>
 
                     <option>
-                      Exterior 90
+                      External 90
                     </option>
 
                     <option>
@@ -808,9 +827,10 @@
                   Size / dimensions
 
                   <input
+                    class="item-size"
                     name="item_size_0"
-                    placeholder="Nominal size or dimensions per drawing"
-                    required=""
+                    placeholder="Select product first"
+                    required
                   />
 
                 </label>
@@ -822,7 +842,7 @@
 
                   <select
                     name="item_material_0"
-                    required="">
+                    required>
 
                     <option value="">
                       Select...
@@ -864,7 +884,7 @@
                   <input
                     min="1"
                     name="item_qty_0"
-                    required=""
+                    required
                     step="1"
                     type="number"
                   />
@@ -879,8 +899,7 @@
                   <textarea
                     name="item_notes_0"
                     placeholder="Fluent part number, drawing revision, flange details, finish, and special requirements"
-                    rows="2">
-                  </textarea>
+                    rows="2"></textarea>
 
                 </label>
 
@@ -894,7 +913,7 @@
 
           <button
             class="add-item"
-            hidden=""
+            hidden
             id="addItem"
             type="button">
 
@@ -920,8 +939,7 @@
             <textarea
               name="project_details"
               placeholder="Drawing references, pipe schedule, flange class and facing, coatings, inspection, or other requirements"
-              rows="4">
-            </textarea>
+              rows="4"></textarea>
 
           </label>
 
@@ -950,7 +968,7 @@
 
           <button
             class="btn secondary"
-            hidden=""
+            hidden
             id="newRequest"
             type="button">
 
@@ -1127,7 +1145,7 @@
 
       <span>
         ©
-        <span data-year="">
+        <span data-year>
           2026
         </span>
         Fluent Welding.
@@ -1138,7 +1156,6 @@
       </span>
 
     </div>
-
 
   </div>
 
