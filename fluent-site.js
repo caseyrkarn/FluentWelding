@@ -6,38 +6,69 @@
 (() => {
   'use strict';
 
+
   /* =========================================================
      GOOGLE ANALYTICS - SITEWIDE
      ========================================================= */
 
   const GA_MEASUREMENT_ID = 'G-5BRGLBH1L2';
 
+
   function initializeAnalytics() {
 
-    // If Analytics is already loaded directly in the HTML,
-    // do not load or configure it a second time.
-    if (typeof window.gtag === 'function') return;
+    if (typeof window.gtag === 'function') {
+      return;
+    }
 
-    window.dataLayer = window.dataLayer || [];
 
-    window.gtag = function () {
-      window.dataLayer.push(arguments);
-    };
+    window.dataLayer =
+      window.dataLayer || [];
 
-    window.gtag('js', new Date());
 
-    window.gtag('config', GA_MEASUREMENT_ID);
+    window.gtag =
+      function () {
 
-    const analyticsScript = document.createElement('script');
+        window.dataLayer.push(
+          arguments
+        );
 
-    analyticsScript.async = true;
+      };
+
+
+    window.gtag(
+      'js',
+      new Date()
+    );
+
+
+    window.gtag(
+      'config',
+      GA_MEASUREMENT_ID
+    );
+
+
+    const analyticsScript =
+      document.createElement(
+        'script'
+      );
+
+
+    analyticsScript.async =
+      true;
+
 
     analyticsScript.src =
       'https://www.googletagmanager.com/gtag/js?id=' +
-      encodeURIComponent(GA_MEASUREMENT_ID);
+      encodeURIComponent(
+        GA_MEASUREMENT_ID
+      );
 
-    document.head.appendChild(analyticsScript);
+
+    document.head.appendChild(
+      analyticsScript
+    );
   }
+
 
   initializeAnalytics();
 
@@ -46,25 +77,54 @@
      GENERAL PAGE SETUP
      ========================================================= */
 
-  document.documentElement.classList.add('js');
+  document.documentElement.classList.add(
+    'js'
+  );
 
-  document.querySelectorAll('[data-year]').forEach(el => {
-    el.textContent = String(new Date().getFullYear());
-  });
+
+  document
+    .querySelectorAll(
+      '[data-year]'
+    )
+    .forEach(
+      el => {
+
+        el.textContent =
+          String(
+            new Date().getFullYear()
+          );
+
+      }
+    );
 
 
   /* =========================================================
      GOOGLE ANALYTICS EVENT HELPER
      ========================================================= */
 
-  function trackEvent(eventName, parameters = {}) {
+  function trackEvent(
+    eventName,
+    parameters = {}
+  ) {
 
-    if (typeof window.gtag !== 'function') return;
+    if (
+      typeof window.gtag !==
+      'function'
+    ) {
+      return;
+    }
 
-    window.gtag('event', eventName, {
-      page_path: window.location.pathname,
-      ...parameters
-    });
+
+    window.gtag(
+      'event',
+      eventName,
+      {
+        page_path:
+          window.location.pathname,
+
+        ...parameters
+      }
+    );
   }
 
 
@@ -72,324 +132,520 @@
      SITEWIDE CONTACT / LEAD CLICK TRACKING
      ========================================================= */
 
-  document.addEventListener('click', event => {
+  document.addEventListener(
+    'click',
+    event => {
 
-    const link = event.target.closest('a[href]');
+      const link =
+        event.target.closest(
+          'a[href]'
+        );
 
-    if (!link) return;
 
-    const href = link.getAttribute('href') || '';
+      if (!link) {
+        return;
+      }
 
-    if (href.startsWith('tel:')) {
 
-      trackEvent('phone_clicked');
+      const href =
+        link.getAttribute(
+          'href'
+        ) || '';
 
-      return;
+
+      if (
+        href.startsWith(
+          'tel:'
+        )
+      ) {
+
+        trackEvent(
+          'phone_clicked'
+        );
+
+        return;
+      }
+
+
+      if (
+        href.startsWith(
+          'mailto:'
+        )
+      ) {
+
+        trackEvent(
+          'email_clicked'
+        );
+
+        return;
+      }
+
+
+      if (
+        href.includes(
+          'request-quote.html'
+        ) ||
+        href === '#quote' ||
+        href.includes(
+          '#quote'
+        )
+      ) {
+
+        trackEvent(
+          'quote_link_clicked'
+        );
+      }
+
     }
-
-    if (href.startsWith('mailto:')) {
-
-      trackEvent('email_clicked');
-
-      return;
-    }
-
-    if (
-      href.includes('request-quote.html') ||
-      href === '#quote' ||
-      href.includes('#quote')
-    ) {
-
-      trackEvent('quote_link_clicked');
-    }
-  });
+  );
 
 
   /* =========================================================
      NAVIGATION
      ========================================================= */
 
-  const nav = document.getElementById('main-nav');
+  const nav =
+    document.getElementById(
+      'main-nav'
+    );
+
 
   const mobileToggle =
-    document.querySelector('.mobile-toggle');
+    document.querySelector(
+      '.mobile-toggle'
+    );
+
 
   const desktop =
-    window.matchMedia('(min-width: 1051px)');
+    window.matchMedia(
+      '(min-width: 1051px)'
+    );
+
 
   const mouse =
-    window.matchMedia('(hover: hover) and (pointer: fine)');
+    window.matchMedia(
+      '(hover: hover) and (pointer: fine)'
+    );
+
 
   const groups =
-    [...document.querySelectorAll('[data-nav-group]')];
+    [
+      ...document.querySelectorAll(
+        '[data-nav-group]'
+      )
+    ];
+
 
   const timers =
     new WeakMap();
 
 
-  function setMenu(group, open, mode = '') {
+  function setMenu(
+    group,
+    open,
+    mode = ''
+  ) {
 
     const trigger =
-      group.querySelector('.nav-trigger');
+      group.querySelector(
+        '.nav-trigger'
+      );
+
 
     const panel =
       document.getElementById(
-        trigger.getAttribute('aria-controls')
+        trigger.getAttribute(
+          'aria-controls'
+        )
       );
 
+
     window.clearTimeout(
-      timers.get(group)
+      timers.get(
+        group
+      )
     );
+
 
     if (open) {
 
-      groups.forEach(other => {
+      groups.forEach(
+        other => {
 
-        if (other !== group) {
-          setMenu(other, false);
+          if (
+            other !== group
+          ) {
+
+            setMenu(
+              other,
+              false
+            );
+          }
+
         }
-
-      });
-
+      );
     }
+
 
     trigger.setAttribute(
       'aria-expanded',
       String(open)
     );
 
-    panel.hidden = !open;
+
+    panel.hidden =
+      !open;
+
 
     group.dataset.mode =
-      open ? mode : '';
+      open
+        ? mode
+        : '';
   }
 
 
   function closeMenus() {
 
-    groups.forEach(group => {
-      setMenu(group, false);
-    });
+    groups.forEach(
+      group => {
 
+        setMenu(
+          group,
+          false
+        );
+
+      }
+    );
   }
 
 
-  groups.forEach(group => {
+  groups.forEach(
+    group => {
 
-    const trigger =
-      group.querySelector('.nav-trigger');
-
-
-    trigger.addEventListener('click', () => {
-
-      if (group.dataset.mode === 'hover') {
-
-        setMenu(
-          group,
-          true,
-          'pinned'
+      const trigger =
+        group.querySelector(
+          '.nav-trigger'
         );
 
-      } else {
 
-        setMenu(
-          group,
-          trigger.getAttribute('aria-expanded') !== 'true',
-          'pinned'
-        );
+      trigger.addEventListener(
+        'click',
+        () => {
 
-      }
+          if (
+            group.dataset.mode ===
+            'hover'
+          ) {
 
-    });
+            setMenu(
+              group,
+              true,
+              'pinned'
+            );
 
+          } else {
 
-    trigger.addEventListener('keydown', event => {
+            setMenu(
+              group,
+              trigger.getAttribute(
+                'aria-expanded'
+              ) !== 'true',
+              'pinned'
+            );
+          }
 
-      if (event.key === 'ArrowDown') {
-
-        event.preventDefault();
-
-        setMenu(
-          group,
-          true,
-          'keyboard'
-        );
-
-        group
-          .querySelector('.nav-dropdown a')
-          .focus();
-      }
-
-    });
-
-
-    group.addEventListener('pointerenter', event => {
-
-      if (
-        event.pointerType === 'mouse' &&
-        desktop.matches &&
-        mouse.matches
-      ) {
-
-        setMenu(
-          group,
-          true,
-          group.dataset.mode || 'hover'
-        );
-
-      }
-
-    });
-
-
-    group.addEventListener('pointerleave', () => {
-
-      if (group.dataset.mode === 'hover') {
-
-        timers.set(
-          group,
-
-          window.setTimeout(() => {
-
-            if (!group.contains(document.activeElement)) {
-              setMenu(group, false);
-            }
-
-          }, 180)
-        );
-
-      }
-
-    });
-
-
-    group.addEventListener('focusout', () => {
-
-      window.setTimeout(() => {
-
-        if (!group.contains(document.activeElement)) {
-          setMenu(group, false);
         }
-
-      }, 0);
-
-    });
-
-  });
+      );
 
 
-  if (nav && mobileToggle) {
+      trigger.addEventListener(
+        'keydown',
+        event => {
 
-    mobileToggle.hidden = false;
+          if (
+            event.key ===
+            'ArrowDown'
+          ) {
+
+            event.preventDefault();
 
 
-    function mobileOpen(open) {
+            setMenu(
+              group,
+              true,
+              'keyboard'
+            );
+
+
+            group
+              .querySelector(
+                '.nav-dropdown a'
+              )
+              .focus();
+          }
+
+        }
+      );
+
+
+      group.addEventListener(
+        'pointerenter',
+        event => {
+
+          if (
+            event.pointerType ===
+              'mouse' &&
+            desktop.matches &&
+            mouse.matches
+          ) {
+
+            setMenu(
+              group,
+              true,
+              group.dataset.mode ||
+                'hover'
+            );
+          }
+
+        }
+      );
+
+
+      group.addEventListener(
+        'pointerleave',
+        () => {
+
+          if (
+            group.dataset.mode ===
+            'hover'
+          ) {
+
+            timers.set(
+              group,
+
+              window.setTimeout(
+                () => {
+
+                  if (
+                    !group.contains(
+                      document.activeElement
+                    )
+                  ) {
+
+                    setMenu(
+                      group,
+                      false
+                    );
+                  }
+
+                },
+                180
+              )
+            );
+          }
+
+        }
+      );
+
+
+      group.addEventListener(
+        'focusout',
+        () => {
+
+          window.setTimeout(
+            () => {
+
+              if (
+                !group.contains(
+                  document.activeElement
+                )
+              ) {
+
+                setMenu(
+                  group,
+                  false
+                );
+              }
+
+            },
+            0
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  if (
+    nav &&
+    mobileToggle
+  ) {
+
+    mobileToggle.hidden =
+      false;
+
+
+    function mobileOpen(
+      open
+    ) {
 
       mobileToggle.setAttribute(
         'aria-expanded',
         String(open)
       );
 
+
       nav.dataset.open =
         String(open);
 
+
       if (!open) {
+
         closeMenus();
       }
-
     }
 
 
-    mobileToggle.addEventListener('click', () => {
+    mobileToggle.addEventListener(
+      'click',
+      () => {
 
-      mobileOpen(
-        mobileToggle.getAttribute('aria-expanded') !== 'true'
-      );
-
-    });
-
-
-    desktop.addEventListener('change', () => {
-
-      mobileOpen(false);
-
-    });
-
-
-    nav.addEventListener('click', event => {
-
-      if (event.target.closest('a')) {
-        mobileOpen(false);
-      }
-
-    });
-
-
-    document.addEventListener('click', event => {
-
-      if (
-        !nav.contains(event.target) &&
-        !mobileToggle.contains(event.target)
-      ) {
-
-        mobileOpen(false);
-
-      }
-
-    });
-
-
-    document.addEventListener('keydown', event => {
-
-      if (event.key !== 'Escape') return;
-
-
-      const openGroup =
-        groups.find(group =>
-
-          group
-            .querySelector('.nav-trigger')
-            .getAttribute('aria-expanded') === 'true'
-
+        mobileOpen(
+          mobileToggle.getAttribute(
+            'aria-expanded'
+          ) !== 'true'
         );
 
+      }
+    );
 
-      if (openGroup) {
 
-        const restore =
-          openGroup.contains(
-            document.activeElement
-          );
+    desktop.addEventListener(
+      'change',
+      () => {
 
-        setMenu(
-          openGroup,
+        mobileOpen(
           false
         );
 
-        if (restore) {
+      }
+    );
 
-          openGroup
-            .querySelector('.nav-trigger')
-            .focus();
 
+    nav.addEventListener(
+      'click',
+      event => {
+
+        if (
+          event.target.closest(
+            'a'
+          )
+        ) {
+
+          mobileOpen(
+            false
+          );
         }
 
-        event.preventDefault();
+      }
+    );
 
-      } else if (
-        mobileToggle.getAttribute('aria-expanded') === 'true'
-      ) {
 
-        mobileOpen(false);
+    document.addEventListener(
+      'click',
+      event => {
 
-        mobileToggle.focus();
+        if (
+          !nav.contains(
+            event.target
+          ) &&
+          !mobileToggle.contains(
+            event.target
+          )
+        ) {
 
-        event.preventDefault();
+          mobileOpen(
+            false
+          );
+        }
 
       }
+    );
 
-    });
 
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (
+          event.key !==
+          'Escape'
+        ) {
+          return;
+        }
+
+
+        const openGroup =
+          groups.find(
+            group =>
+
+              group
+                .querySelector(
+                  '.nav-trigger'
+                )
+                .getAttribute(
+                  'aria-expanded'
+                ) === 'true'
+          );
+
+
+        if (openGroup) {
+
+          const restore =
+            openGroup.contains(
+              document.activeElement
+            );
+
+
+          setMenu(
+            openGroup,
+            false
+          );
+
+
+          if (restore) {
+
+            openGroup
+              .querySelector(
+                '.nav-trigger'
+              )
+              .focus();
+          }
+
+
+          event.preventDefault();
+
+        } else if (
+          mobileToggle.getAttribute(
+            'aria-expanded'
+          ) === 'true'
+        ) {
+
+          mobileOpen(
+            false
+          );
+
+
+          mobileToggle.focus();
+
+
+          event.preventDefault();
+        }
+
+      }
+    );
   }
 
 
@@ -398,77 +654,105 @@
      ========================================================= */
 
   const drawingSearch =
-    document.getElementById('drawingSearch');
+    document.getElementById(
+      'drawingSearch'
+    );
 
 
   if (drawingSearch) {
 
     const family =
-      document.getElementById('drawingFamily');
+      document.getElementById(
+        'drawingFamily'
+      );
+
 
     const size =
-      document.getElementById('drawingSize');
+      document.getElementById(
+        'drawingSize'
+      );
+
 
     const drawings =
-      [...document.querySelectorAll('[data-drawing]')];
+      [
+        ...document.querySelectorAll(
+          '[data-drawing]'
+        )
+      ];
+
 
     const count =
-      document.getElementById('drawingCount');
+      document.getElementById(
+        'drawingCount'
+      );
+
 
     const empty =
-      document.getElementById('noDrawings');
+      document.getElementById(
+        'noDrawings'
+      );
 
 
-    const filter = () => {
+    const filter =
+      () => {
 
-      const search =
-        drawingSearch
-          .value
-          .trim()
-          .toLowerCase();
-
-      let matches = 0;
-
-
-      drawings.forEach(card => {
-
-        const show =
-
-          (
-            !family.value ||
-            family.value === card.dataset.family
-          ) &&
-
-          (
-            !size.value ||
-            size.value === card.dataset.size
-          ) &&
-
-          (
-            !search ||
-            card.dataset.search
-              .toLowerCase()
-              .includes(search)
-          );
+        const search =
+          drawingSearch
+            .value
+            .trim()
+            .toLowerCase();
 
 
-        card.hidden = !show;
+        let matches =
+          0;
 
 
-        if (show) {
-          matches++;
-        }
+        drawings.forEach(
+          card => {
 
-      });
+            const show =
+
+              (
+                !family.value ||
+                family.value ===
+                  card.dataset.family
+              ) &&
+
+              (
+                !size.value ||
+                size.value ===
+                  card.dataset.size
+              ) &&
+
+              (
+                !search ||
+                card.dataset.search
+                  .toLowerCase()
+                  .includes(
+                    search
+                  )
+              );
 
 
-      count.textContent =
-        `${matches} drawing sheet${matches === 1 ? '' : 's'}`;
+            card.hidden =
+              !show;
 
 
-      empty.hidden =
-        matches !== 0;
-    };
+            if (show) {
+              matches++;
+            }
+
+          }
+        );
+
+
+        count.textContent =
+          `${matches} drawing sheet${matches === 1 ? '' : 's'}`;
+
+
+        empty.hidden =
+          matches !== 0;
+      };
 
 
     drawingSearch.addEventListener(
@@ -490,20 +774,32 @@
 
 
     document
-      .getElementById('clearDrawings')
-      .addEventListener('click', () => {
+      .getElementById(
+        'clearDrawings'
+      )
+      .addEventListener(
+        'click',
+        () => {
 
-        drawingSearch.value = '';
+          drawingSearch.value =
+            '';
 
-        family.value = '';
 
-        size.value = '';
+          family.value =
+            '';
 
-        filter();
 
-        drawingSearch.focus();
+          size.value =
+            '';
 
-      });
+
+          filter();
+
+
+          drawingSearch.focus();
+
+        }
+      );
 
 
     filter();
@@ -517,32 +813,54 @@
   function initServiceRequest() {
 
     const referral =
-      document.getElementById('serviceRequestForm');
+      document.getElementById(
+        'serviceRequestForm'
+      );
 
 
-    if (!referral) return;
+    if (!referral) {
+      return;
+    }
 
 
     const type =
-      document.getElementById('serviceType');
+      document.getElementById(
+        'serviceType'
+      );
+
 
     const application =
-      document.getElementById('serviceApplication');
+      document.getElementById(
+        'serviceApplication'
+      );
+
 
     const aerial =
-      document.getElementById('aerialRequestDetails');
+      document.getElementById(
+        'aerialRequestDetails'
+      );
+
 
     const submit =
-      document.getElementById('serviceSubmit');
+      document.getElementById(
+        'serviceSubmit'
+      );
+
 
     const status =
-      document.getElementById('serviceStatus');
+      document.getElementById(
+        'serviceStatus'
+      );
+
 
     const again =
-      document.getElementById('newServiceRequest');
+      document.getElementById(
+        'newServiceRequest'
+      );
 
 
-    let busy = false;
+    let busy =
+      false;
 
 
     const aerialTypes =
@@ -554,38 +872,62 @@
 
 
     const supported =
-      (field, value) =>
-        [...field.options].some(
+      (
+        field,
+        value
+      ) =>
+        [
+          ...field.options
+        ].some(
           option =>
-            option.value === value
+            option.value ===
+            value
         );
 
 
     const clean =
-      (id, limit = 500) =>
+      (
+        id,
+        limit = 500
+      ) =>
         (
-          document.getElementById(id).value || ''
+          document
+            .getElementById(
+              id
+            )
+            .value ||
+          ''
         )
           .trim()
-          .slice(0, limit);
+          .slice(
+            0,
+            limit
+          );
 
 
     const setStatus =
-      (text, state = '') => {
+      (
+        text,
+        state = ''
+      ) => {
 
-        status.textContent = text;
+        status.textContent =
+          text;
 
-        status.dataset.state = state;
 
+        status.dataset.state =
+          state;
       };
 
 
-    const showAerial = () => {
+    const showAerial =
+      () => {
 
-      aerial.hidden =
-        !aerialTypes.has(type.value);
-
-    };
+        aerial.hidden =
+          !aerialTypes.has(
+            type.value
+          );
+      };
 
 
     const params =
@@ -597,26 +939,32 @@
     if (
       supported(
         type,
-        params.get('service')
+        params.get(
+          'service'
+        )
       )
     ) {
 
       type.value =
-        params.get('service');
-
+        params.get(
+          'service'
+        );
     }
 
 
     if (
       supported(
         application,
-        params.get('application')
+        params.get(
+          'application'
+        )
       )
     ) {
 
       application.value =
-        params.get('application');
-
+        params.get(
+          'application'
+        );
     }
 
 
@@ -630,60 +978,82 @@
 
 
     document
-      .querySelectorAll('[data-service-prefill]')
-      .forEach(link => {
+      .querySelectorAll(
+        '[data-service-prefill]'
+      )
+      .forEach(
+        link => {
 
-        link.addEventListener('click', () => {
+          link.addEventListener(
+            'click',
+            () => {
 
-          if (
-            !busy &&
-            supported(
-              type,
-              link.dataset.servicePrefill
-            )
-          ) {
+              if (
+                !busy &&
+                supported(
+                  type,
+                  link.dataset
+                    .servicePrefill
+                )
+              ) {
 
-            type.value =
-              link.dataset.servicePrefill;
-
-            showAerial();
-
-          }
-
-        });
-
-      });
-
-
-    referral.hidden = false;
+                type.value =
+                  link.dataset
+                    .servicePrefill;
 
 
-    again.addEventListener('click', () => {
+                showAerial();
+              }
 
-      if (busy) return;
+            }
+          );
 
-
-      referral.reset();
-
-      showAerial();
-
-
-      again.hidden = true;
-
-      submit.disabled = false;
-
-      submit.textContent =
-        'Request a Connection';
-
-
-      setStatus(
-        'Enter a new connection request. Previously submitted requests are not changed.'
+        }
       );
 
 
-      referral.elements.name.focus();
+    referral.hidden =
+      false;
 
-    });
+
+    again.addEventListener(
+      'click',
+      () => {
+
+        if (busy) {
+          return;
+        }
+
+
+        referral.reset();
+
+
+        showAerial();
+
+
+        again.hidden =
+          true;
+
+
+        submit.disabled =
+          false;
+
+
+        submit.textContent =
+          'Request a Connection';
+
+
+        setStatus(
+          'Enter a new connection request. Previously submitted requests are not changed.'
+        );
+
+
+        referral.elements
+          .name
+          .focus();
+
+      }
+    );
 
 
     referral.addEventListener(
@@ -698,19 +1068,20 @@
           busy ||
           !referral.reportValidity()
         ) {
-
           return;
-
         }
 
 
         if (
-          location.protocol === 'file:' ||
+          location.protocol ===
+            'file:' ||
           [
             'localhost',
             '127.0.0.1',
             '::1'
-          ].includes(location.hostname)
+          ].includes(
+            location.hostname
+          )
         ) {
 
           setStatus(
@@ -722,7 +1093,8 @@
         }
 
 
-        busy = true;
+        busy =
+          true;
 
 
         referral.setAttribute(
@@ -731,7 +1103,9 @@
         );
 
 
-        submit.disabled = true;
+        submit.disabled =
+          true;
+
 
         submit.textContent =
           'Sending...';
@@ -748,7 +1122,8 @@
 
         const timeout =
           window.setTimeout(
-            () => controller.abort(),
+            () =>
+              controller.abort(),
             25000
           );
 
@@ -772,12 +1147,14 @@
 
             payload.set(
               key,
+
               referral.elements
-                .namedItem(key)
+                .namedItem(
+                  key
+                )
                 .value
                 .trim()
             );
-
           }
 
 
@@ -790,8 +1167,12 @@
 
           payload.set(
             'project',
+
             'SERVICE CONNECTION - ' +
-              (project || type.value)
+              (
+                project ||
+                type.value
+              )
           );
 
 
@@ -849,19 +1230,25 @@
 
             'Timing: ' +
               (
-                clean('serviceTiming') ||
+                clean(
+                  'serviceTiming'
+                ) ||
                 'Discuss during follow-up'
               ),
 
             'Tank size / capacity: ' +
               (
-                clean('tankCapacity') ||
+                clean(
+                  'tankCapacity'
+                ) ||
                 'Not specified'
               ),
 
             'Tank construction / liquid: ' +
               (
-                clean('tankDetails') ||
+                clean(
+                  'tankDetails'
+                ) ||
                 'Not specified'
               )
 
@@ -875,89 +1262,82 @@
           ) {
 
             details.push(
-
               'Aerial coverage / assets: ' +
-                (
-                  clean('aerialCoverage') ||
-                  'Not specified'
-                )
-
+              (
+                clean(
+                  'aerialCoverage'
+                ) ||
+                'Not specified'
+              )
             );
 
 
             details.push(
-
               'Aerial deliverables / use: ' +
-                (
-                  clean('aerialDeliverables') ||
-                  'Not specified'
-                )
-
+              (
+                clean(
+                  'aerialDeliverables'
+                ) ||
+                'Not specified'
+              )
             );
 
 
             details.push(
-
               'Accuracy / survey requirements: ' +
-                (
-                  clean('aerialAccuracy') ||
-                  'Discuss with provider'
-                )
-
+              (
+                clean(
+                  'aerialAccuracy'
+                ) ||
+                'Discuss with provider'
+              )
             );
-
           }
 
 
           details.push(
-
             'Request details:\n' +
-
             referral.elements
               .project_details
               .value
               .trim()
-
           );
 
 
           details.push(
-
             'Acknowledgment: connection request only, not a service booking or order.'
-
           );
 
 
           details.push(
-
             'Privacy: obtain customer permission before sharing contact or project details with an independent provider. This form does not grant forwarding permission.'
-
           );
 
 
           payload.set(
             'project_details',
-            details.join('\n\n')
+            details.join(
+              '\n\n'
+            )
           );
 
 
           await fetch(
-
             referral.action,
 
             {
+              method:
+                'POST',
 
-              method: 'POST',
+              mode:
+                'no-cors',
 
-              mode: 'no-cors',
-
-              credentials: 'omit',
+              credentials:
+                'omit',
 
               headers: {
-
                 'Content-Type':
                   'application/x-www-form-urlencoded;charset=UTF-8'
-
               },
 
               body:
@@ -965,19 +1345,13 @@
 
               signal:
                 controller.signal
-
             }
-
           );
 
 
-          /* GOOGLE ANALYTICS SERVICE REQUEST */
-
           trackEvent(
             'service_request_submitted',
-
             {
-
               service_type:
                 type.value ||
                 'not_specified',
@@ -985,17 +1359,13 @@
               application:
                 application.value ||
                 'not_specified'
-
             }
           );
 
 
           setStatus(
-
             'Request sent for processing. Check your email for the Fluent request confirmation; the existing system may label it an RFQ. This is not a booking. If no confirmation arrives, call 740-606-8333 before submitting again. Your details remain here.',
-
             'sent'
-
           );
 
 
@@ -1003,22 +1373,20 @@
             'Check Email for Confirmation';
 
 
-          again.hidden = false;
+          again.hidden =
+            false;
 
 
         } catch (error) {
 
-
           setStatus(
-
             'We could not confirm transmission. Your details are still here. Check for a confirmation email before trying again, or call 740-606-8333.',
-
             'warning'
-
           );
 
 
-          submit.disabled = false;
+          submit.disabled =
+            false;
 
 
           submit.textContent =
@@ -1027,26 +1395,22 @@
 
         } finally {
 
-
           window.clearTimeout(
             timeout
           );
 
 
-          busy = false;
+          busy =
+            false;
 
 
           referral.setAttribute(
             'aria-busy',
             'false'
           );
-
         }
-
       }
-
     );
-
   }
 
 
@@ -1058,47 +1422,438 @@
      ========================================================= */
 
   const form =
-    document.getElementById('quoteForm');
+    document.getElementById(
+      'quoteForm'
+    );
 
 
-  if (!form) return;
+  if (!form) {
+    return;
+  }
 
 
   const itemList =
-    document.getElementById('itemList');
+    document.getElementById(
+      'itemList'
+    );
 
 
   const addButton =
-    document.getElementById('addItem');
+    document.getElementById(
+      'addItem'
+    );
 
 
   const submit =
-    document.getElementById('quoteSubmit');
+    document.getElementById(
+      'quoteSubmit'
+    );
 
 
   const status =
-    document.getElementById('formStatus');
+    document.getElementById(
+      'formStatus'
+    );
 
 
   const newRequest =
-    document.getElementById('newRequest');
+    document.getElementById(
+      'newRequest'
+    );
 
 
   const application =
-    document.getElementById('applicationContext');
+    document.getElementById(
+      'applicationContext'
+    );
 
 
   const supply =
-    document.getElementById('supplyContext');
+    document.getElementById(
+      'supplyContext'
+    );
+
+
+  const compliance =
+    document.getElementById(
+      'complianceContext'
+    );
 
 
   const itemTemplate =
     itemList
       .firstElementChild
-      .cloneNode(true);
+      .cloneNode(
+        true
+      );
 
 
-  let busy = false;
+  let busy =
+    false;
+
+
+  /* =========================================================
+     STANDARD SIZE CONFIGURATION
+     ========================================================= */
+
+  const STANDARD_SIZES = {
+
+    'Sidewall Nozzle': [
+      '2"',
+      '3"',
+      '4"',
+      '6"',
+      '8"',
+      '10"'
+    ],
+
+    'Roof Nozzle': [
+      '2"',
+      '3"',
+      '6"'
+    ],
+
+    'Internal Funnel': [
+      '4"',
+      '6"',
+      '8"',
+      '10"',
+      '12"'
+    ],
+
+    'External 90': [
+      '4"',
+      '6"',
+      '8"',
+      '10"',
+      '12"'
+    ],
+
+    /*
+     * Price-guide sizes.
+     *
+     * Anti-Vortex remains subject to drawing/release review
+     * in the quote automation.
+     */
+    'Anti-Vortex Assembly': [
+      '4"',
+      '6"',
+      '8"',
+      '10"',
+      '12"'
+    ]
+
+  };
+
+
+  const PRODUCT_ALIASES = {
+
+    'Interior Funnel':
+      'Internal Funnel',
+
+    'Exterior 90':
+      'External 90'
+
+  };
+
+
+  function normalizeProductName(
+    value
+  ) {
+
+    return (
+      PRODUCT_ALIASES[
+        value
+      ] ||
+      value ||
+      ''
+    );
+  }
+
+
+  function buildStandardSizeSelect(
+    name,
+    sizes,
+    currentValue = ''
+  ) {
+
+    const select =
+      document.createElement(
+        'select'
+      );
+
+
+    select.name =
+      name;
+
+
+    select.className =
+      'item-size';
+
+
+    select.required =
+      true;
+
+
+    const placeholder =
+      document.createElement(
+        'option'
+      );
+
+
+    placeholder.value =
+      '';
+
+
+    placeholder.textContent =
+      'Select standard size...';
+
+
+    select.appendChild(
+      placeholder
+    );
+
+
+    sizes.forEach(
+      size => {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          size;
+
+
+        option.textContent =
+          size;
+
+
+        select.appendChild(
+          option
+        );
+      }
+    );
+
+
+    if (
+      currentValue &&
+      sizes.includes(
+        currentValue
+      )
+    ) {
+
+      select.value =
+        currentValue;
+    }
+
+
+    return select;
+  }
+
+
+  function buildCustomSizeInput(
+    name,
+    currentValue = ''
+  ) {
+
+    const input =
+      document.createElement(
+        'input'
+      );
+
+
+    input.name =
+      name;
+
+
+    input.className =
+      'item-size';
+
+
+    input.required =
+      true;
+
+
+    input.placeholder =
+      'Enter dimensions or drawing reference';
+
+
+    input.value =
+      currentValue;
+
+
+    return input;
+  }
+
+
+  function configureItemSize(
+    item,
+    desiredValue = ''
+  ) {
+
+    const productField =
+      item.querySelector(
+        '.item-product'
+      );
+
+
+    let sizeField =
+      item.querySelector(
+        '.item-size'
+      );
+
+
+    if (
+      !productField ||
+      !sizeField
+    ) {
+      return;
+    }
+
+
+    const product =
+      normalizeProductName(
+        productField.value
+      );
+
+
+    const fieldName =
+      sizeField.name;
+
+
+    const existingValue =
+      desiredValue ||
+      sizeField.value ||
+      '';
+
+
+    const standardSizes =
+      STANDARD_SIZES[
+        product
+      ];
+
+
+    let replacement;
+
+
+    if (
+      standardSizes
+    ) {
+
+      replacement =
+        buildStandardSizeSelect(
+          fieldName,
+          standardSizes,
+          existingValue
+        );
+
+    } else {
+
+      replacement =
+        buildCustomSizeInput(
+          fieldName,
+          existingValue
+        );
+    }
+
+
+    sizeField.replaceWith(
+      replacement
+    );
+  }
+
+
+  function initializeQuoteItem(
+    item
+  ) {
+
+    const product =
+      item.querySelector(
+        '.item-product'
+      );
+
+
+    if (!product) {
+      return;
+    }
+
+
+    product.addEventListener(
+      'change',
+      () => {
+
+        configureItemSize(
+          item
+        );
+
+      }
+    );
+
+
+    configureItemSize(
+      item
+    );
+  }
+
+
+  /* =========================================================
+     SUPPLY / COMPLIANCE BEHAVIOR
+     ========================================================= */
+
+  function syncComplianceWithSupply() {
+
+    if (
+      !supply ||
+      !compliance
+    ) {
+      return;
+    }
+
+
+    const fabricationOnly =
+      supply.value ===
+      'Fabrication only - buyer supplies material';
+
+
+    if (
+      fabricationOnly
+    ) {
+
+      compliance.value =
+        'Buyer-furnished';
+
+
+      compliance.disabled =
+        true;
+
+    } else {
+
+      compliance.disabled =
+        false;
+
+
+      if (
+        compliance.value ===
+        'Buyer-furnished'
+      ) {
+
+        compliance.value =
+          '';
+      }
+    }
+  }
+
+
+  supply.addEventListener(
+    'change',
+    syncComplianceWithSupply
+  );
+
+
+  syncComplianceWithSupply();
 
 
   /* =========================================================
@@ -1111,10 +1866,11 @@
 
   form.addEventListener(
     'input',
-
     () => {
 
-      if (rfqStartedTracked) {
+      if (
+        rfqStartedTracked
+      ) {
         return;
       }
 
@@ -1125,7 +1881,6 @@
 
       trackEvent(
         'rfq_started',
-
         {
           lead_type:
             'website_rfq'
@@ -1133,7 +1888,6 @@
       );
 
     }
-
   );
 
 
@@ -1143,30 +1897,43 @@
 
   function renumberItems() {
 
-    [...itemList.children].forEach(
-      (item, index) => {
+    [
+      ...itemList.children
+    ].forEach(
+      (
+        item,
+        index
+      ) => {
 
         item.dataset.itemIndex =
-          String(index);
+          String(
+            index
+          );
 
 
         item
-          .querySelector('h3')
+          .querySelector(
+            'h3'
+          )
           .textContent =
             `Item ${index + 1}`;
 
 
         item
-          .querySelectorAll('[name]')
-          .forEach(field => {
+          .querySelectorAll(
+            '[name]'
+          )
+          .forEach(
+            field => {
 
-            field.name =
-              field.name.replace(
-                /_\d+$/,
-                `_${index}`
-              );
+              field.name =
+                field.name.replace(
+                  /_\d+$/,
+                  `_${index}`
+                );
 
-          });
+            }
+          );
 
 
         const remove =
@@ -1181,13 +1948,27 @@
             'aria-label',
             `Remove item ${index + 1}`
           );
-
         }
-
       }
-
     );
+  }
 
+
+  function resetItemFields(
+    item
+  ) {
+
+    item
+      .querySelectorAll(
+        'input,select,textarea'
+      )
+      .forEach(
+        field => {
+
+          field.value =
+            '';
+        }
+      );
   }
 
 
@@ -1196,18 +1977,14 @@
   ) {
 
     const item =
-      itemTemplate.cloneNode(true);
+      itemTemplate.cloneNode(
+        true
+      );
 
 
-    item
-      .querySelectorAll(
-        'input,select,textarea'
-      )
-      .forEach(field => {
-
-        field.value = '';
-
-      });
+    resetItemFields(
+      item
+    );
 
 
     const remove =
@@ -1229,8 +2006,12 @@
 
 
     item
-      .querySelector('.item-header')
-      .appendChild(remove);
+      .querySelector(
+        '.item-header'
+      )
+      .appendChild(
+        remove
+      );
 
 
     itemList.appendChild(
@@ -1241,14 +2022,19 @@
     renumberItems();
 
 
+    initializeQuoteItem(
+      item
+    );
+
+
     if (focus) {
 
       item
-        .querySelector('select')
+        .querySelector(
+          '.item-product'
+        )
         .focus();
-
     }
-
   }
 
 
@@ -1258,21 +2044,18 @@
 
   addButton.addEventListener(
     'click',
-
     () => {
 
       if (!busy) {
+
         addItem();
       }
-
     }
-
   );
 
 
   itemList.addEventListener(
     'click',
-
     event => {
 
       const remove =
@@ -1285,9 +2068,7 @@
         !remove ||
         busy
       ) {
-
         return;
-
       }
 
 
@@ -1310,13 +2091,17 @@
       if (previous) {
 
         previous
-          .querySelector('select')
+          .querySelector(
+            '.item-product'
+          )
           .focus();
-
       }
-
     }
+  );
 
+
+  initializeQuoteItem(
+    itemList.firstElementChild
   );
 
 
@@ -1336,101 +2121,143 @@
   ) {
 
     if (
-      [...field.options].some(
+      !field ||
+      !value
+    ) {
+      return;
+    }
+
+
+    if (
+      [
+        ...field.options
+      ].some(
         option =>
-          option.value === value
+          option.value ===
+          value
       )
     ) {
 
       field.value =
         value;
-
     }
-
   }
 
 
+  const prefillProduct =
+    normalizeProductName(
+      params.get(
+        'product'
+      ) || ''
+    );
+
+
   selectSupported(
+    form.elements
+      .item_type_0,
 
-    form.elements.item_type_0,
+    prefillProduct
+  );
 
-    params.get('product') || ''
 
+  configureItemSize(
+    itemList.firstElementChild
   );
 
 
   selectSupported(
-
     application,
-
-    params.get('application') || ''
-
+    params.get(
+      'application'
+    ) || ''
   );
 
 
   if (
-    params.has('size')
+    params.has(
+      'size'
+    )
   ) {
 
-    form.elements
-      .item_size_0
-      .value =
+    const desiredSize =
+      (
+        params.get(
+          'size'
+        ) ||
+        ''
+      ).trim();
 
-        params
-          .get('size')
-          .slice(0, 200);
 
+    const normalizedSize =
+      /^\d+(\.\d+)?$/.test(
+        desiredSize
+      )
+        ? desiredSize + '"'
+        : desiredSize;
+
+
+    configureItemSize(
+      itemList.firstElementChild,
+      normalizedSize
+    );
   }
 
 
   const part =
-
     (
-      params.get('part') || ''
+      params.get(
+        'part'
+      ) ||
+      ''
     )
-      .slice(0, 160);
+      .slice(
+        0,
+        160
+      );
 
 
   const notes =
-
     (
-      params.get('notes') || ''
+      params.get(
+        'notes'
+      ) ||
+      ''
     )
-      .slice(0, 1500);
+      .slice(
+        0,
+        1500
+      );
 
 
   form.elements
     .item_notes_0
     .value =
-
       [
-
         part
           ? `Fluent part number: ${part}`
           : '',
 
         notes
-
       ]
-
-        .filter(Boolean)
-
-        .join('\n');
+        .filter(
+          Boolean
+        )
+        .join(
+          '\n'
+        );
 
 
   if (
-    part.endsWith('-304')
+    part.endsWith(
+      '-304'
+    )
   ) {
 
     selectSupported(
-
       form.elements
         .item_material_0,
-
       '304 Stainless'
-
     );
-
   }
 
 
@@ -1440,7 +2267,7 @@
 
   function setStatus(
     text,
-    state
+    state = ''
   ) {
 
     status.textContent =
@@ -1449,23 +2276,29 @@
 
     status.dataset.state =
       state;
-
   }
 
 
   newRequest.addEventListener(
     'click',
-
     () => {
 
       form.reset();
 
 
       itemList.replaceChildren(
-
-        itemTemplate.cloneNode(true)
-
+        itemTemplate.cloneNode(
+          true
+        )
       );
+
+
+      initializeQuoteItem(
+        itemList.firstElementChild
+      );
+
+
+      syncComplianceWithSupply();
 
 
       newRequest.hidden =
@@ -1485,20 +2318,15 @@
 
 
       setStatus(
-
         'Enter a new request. Previously submitted requests are not changed.',
-
         ''
-
       );
 
 
       form.elements
         .name
         .focus();
-
     }
-
   );
 
 
@@ -1514,40 +2342,41 @@
       event.preventDefault();
 
 
+      syncComplianceWithSupply();
+
+
       if (
         busy ||
         !form.reportValidity()
       ) {
-
         return;
-
       }
 
 
       if (
-        location.protocol === 'file:' ||
+        location.protocol ===
+          'file:' ||
         [
           'localhost',
           '127.0.0.1',
           '::1'
-        ].includes(location.hostname)
+        ].includes(
+          location.hostname
+        )
       ) {
 
         setStatus(
-
           'Local preview only: no request was sent. Use the published website to submit a quote request.',
-
           'warning'
-
         );
 
 
         return;
-
       }
 
 
-      busy = true;
+      busy =
+        true;
 
 
       form.setAttribute(
@@ -1565,11 +2394,8 @@
 
 
       setStatus(
-
         'Sending the request for processing...',
-
         ''
-
       );
 
 
@@ -1579,16 +2405,18 @@
 
       const timeout =
         window.setTimeout(
-          () => controller.abort(),
+          () =>
+            controller.abort(),
           25000
         );
 
 
       try {
 
-
         const formData =
-          new FormData(form);
+          new FormData(
+            form
+          );
 
 
         const itemCount =
@@ -1596,15 +2424,32 @@
 
 
         formData.set(
-
           'item_count',
-
-          String(itemCount)
-
+          String(
+            itemCount
+          )
         );
 
 
-        const context = [];
+        /*
+         * Disabled controls are excluded from FormData.
+         * Buyer-furnished is automatically selected for
+         * fabrication-only, so explicitly add it.
+         */
+        if (
+          supply.value ===
+          'Fabrication only - buyer supplies material'
+        ) {
+
+          formData.set(
+            'compliance',
+            'Buyer-furnished'
+          );
+        }
+
+
+        const context =
+          [];
 
 
         if (
@@ -1612,11 +2457,8 @@
         ) {
 
           context.push(
-
             `Tank application: ${application.value}`
-
           );
-
         }
 
 
@@ -1625,22 +2467,27 @@
         ) {
 
           context.push(
-
             `Supply route: ${supply.value}`
-
           );
+        }
 
+
+        if (
+          compliance.value
+        ) {
+
+          context.push(
+            `Material / compliance: ${compliance.value}`
+          );
         }
 
 
         const existingDetails =
-
           String(
-
             formData.get(
               'project_details'
-            ) || ''
-
+            ) ||
+            ''
           ).trim();
 
 
@@ -1651,25 +2498,21 @@
           context.push(
             existingDetails
           );
-
         }
 
 
         formData.set(
-
           'project_details',
-
-          context.join('\n\n')
-
+          context.join(
+            '\n\n'
+          )
         );
 
 
         await fetch(
-
           form.action,
 
           {
-
             method:
               'POST',
 
@@ -1680,45 +2523,24 @@
               'omit',
 
             headers: {
-
               'Content-Type':
                 'application/x-www-form-urlencoded;charset=UTF-8'
-
             },
 
             body:
-
               new URLSearchParams(
                 formData
               ),
 
             signal:
-
               controller.signal
-
           }
-
         );
 
 
-        /* =====================================================
-           GOOGLE ANALYTICS RFQ EVENT
-
-           The browser has successfully handed the request
-           to the Google Apps Script endpoint.
-
-           Because the request uses no-cors, the confirmation
-           email remains the final confirmation that Fluent
-           actually received and processed the RFQ.
-           ===================================================== */
-
-
         trackEvent(
-
           'rfq_submitted',
-
           {
-
             lead_type:
               'website_rfq',
 
@@ -1731,19 +2553,18 @@
 
             supply_route:
               supply.value ||
+              'not_specified',
+
+            compliance:
+              compliance.value ||
               'not_specified'
-
           }
-
         );
 
 
         setStatus(
-
           'Request sent for processing. Please check your email for the RFQ confirmation, which confirms receipt. If no confirmation arrives, call 740-606-8333 before submitting again. Your entered details remain here.',
-
           'sent'
-
         );
 
 
@@ -1757,13 +2578,9 @@
 
       } catch (error) {
 
-
         setStatus(
-
           'We could not confirm transmission. Your details have been kept. Check for an RFQ confirmation email before trying again, or call 740-606-8333.',
-
           'warning'
-
         );
 
 
@@ -1777,24 +2594,21 @@
 
       } finally {
 
-
         window.clearTimeout(
           timeout
         );
 
 
-        busy = false;
+        busy =
+          false;
 
 
         form.setAttribute(
           'aria-busy',
           'false'
         );
-
       }
-
     }
-
   );
 
 
