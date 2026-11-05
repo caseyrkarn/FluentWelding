@@ -9,75 +9,25 @@
   'use strict';
 
   /* =========================================================
-     RECAPTCHA v2 LOADER - SHARED
+     RECAPTCHA v2 - STATIC CHECKBOXES IN HTML
+     The checkbox and Google API script are loaded directly by
+     each form page. No DOM injection or async render race.
      ========================================================= */
 
-  const RECAPTCHA_SITE_KEY = '6Le6QBAuAAAAHNGZa4r2cRVvcGDBhK7aPOudrFQ';
-  const RECAPTCHA_FORM_IDS = ['quoteForm', 'serviceRequestForm'];
-
-  function injectRecaptchaIntoForms() {
-    RECAPTCHA_FORM_IDS.forEach(function (formId) {
-      var form = document.getElementById(formId);
-      if (!form) return;
-
-      var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-      if (!submitBtn) return;
-
-      var recaptchaDiv = document.createElement('div');
-      recaptchaDiv.className = 'g-recaptcha';
-      recaptchaDiv.id = formId + '-recaptcha-box';
-      recaptchaDiv.setAttribute('data-sitekey', RECAPTCHA_SITE_KEY);
-      recaptchaDiv.style.margin = '12px 0';
-
-      /* hidden honeypot field */
-      var honey = document.createElement('input');
-      honey.type = 'text';
-      honey.name = 'website';
-      honey.setAttribute('autocomplete', 'off');
-      honey.setAttribute('aria-hidden', 'true');
-      honey.tabIndex = -1;
-      honey.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;';
-      form.appendChild(honey);
-
-      const actionRow = submitBtn.closest('.form-actions') || submitBtn;
-      actionRow.parentNode.insertBefore(recaptchaDiv, actionRow);
-    });
-  }
-
-  if (typeof window.grecaptcha === 'undefined') {
-    var rScript = document.createElement('script');
-    rScript.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
-    rScript.async = true;
-    rScript.defer = true;
-    rScript.addEventListener('load', function () {
-      injectRecaptchaIntoForms();
-      /* Render each visible form's widget */
-      RECAPTCHA_FORM_IDS.forEach(function (formId) {
-        if (document.getElementById(formId)) {
-          grecaptcha.render(formId + '-recaptcha-box', {
-            sitekey: RECAPTCHA_SITE_KEY
-          });
-        }
-      });
-    });
-    document.head.appendChild(rScript);
-  } else {
-    injectRecaptchaIntoForms();
-    RECAPTCHA_FORM_IDS.forEach(function (formId) {
-      if (document.getElementById(formId)) {
-        grecaptcha.render(formId + '-recaptcha-box', {
-          sitekey: RECAPTCHA_SITE_KEY
-        });
-      }
-    });
-  }
-
   function _recaptchaResponse(form) {
-    var box = form.querySelector('.g-recaptcha');
-    if (box && typeof grecaptcha !== 'undefined') {
-      try { return grecaptcha.getResponse() || ''; } catch (_) { return ''; }
+    if (!form || !form.querySelector('.g-recaptcha') ||
+        !window.grecaptcha || typeof window.grecaptcha.getResponse !== 'function') {
+      return '';
     }
-    return '';
+    try { return window.grecaptcha.getResponse() || ''; } catch (_) { return ''; }
+  }
+
+  function _recaptchaWarning(form) {
+    const widget = form && form.querySelector('.g-recaptcha');
+    if (widget && widget.querySelector('iframe')) {
+      return 'Please check the "I am not a robot" checkbox above the submit button, then try again.';
+    }
+    return 'The CAPTCHA checkbox has not loaded. Refresh this page or allow Google reCAPTCHA in your browser, then try again. You can also contact sales@fluentwelding.com.';
   }
 
   /* =========================================================
@@ -373,7 +323,7 @@
       /* --- reCAPTCHA check BEFORE busy=true --- */
       const recaptchaToken = _recaptchaResponse(referral);
       if (!recaptchaToken || recaptchaToken.length === 0) {
-        alert('Please complete the reCAPTCHA verification before submitting.');
+        setStatus(_recaptchaWarning(referral), 'warning');
         return;
       }
 
@@ -702,7 +652,7 @@
       /* --- reCAPTCHA check BEFORE busy=true --- */
       const recaptchaToken = _recaptchaResponse(form);
       if (!recaptchaToken || recaptchaToken.length === 0) {
-        alert('Please complete the reCAPTCHA verification before submitting.');
+        setStatus(_recaptchaWarning(form), 'warning');
         return;
       }
 
