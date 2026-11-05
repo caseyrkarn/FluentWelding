@@ -25,20 +25,22 @@
 
       var recaptchaDiv = document.createElement('div');
       recaptchaDiv.className = 'g-recaptcha';
+      recaptchaDiv.id = formId + '-recaptcha-box';
       recaptchaDiv.setAttribute('data-sitekey', RECAPTCHA_SITE_KEY);
-      recaptchaDiv.setAttribute('data-callback', function () { return true; });
       recaptchaDiv.style.margin = '12px 0';
 
       /* hidden honeypot field */
       var honey = document.createElement('input');
-      honey.type = 'hidden';
+      honey.type = 'text';
       honey.name = 'website';
       honey.setAttribute('autocomplete', 'off');
       honey.setAttribute('aria-hidden', 'true');
+      honey.tabIndex = -1;
       honey.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;';
-      form.insertBefore(honey, submitBtn);
+      form.appendChild(honey);
 
-      form.insertBefore(recaptchaDiv, submitBtn);
+      const actionRow = submitBtn.closest('.form-actions') || submitBtn;
+      actionRow.parentNode.insertBefore(recaptchaDiv, actionRow);
     });
   }
 
@@ -73,11 +75,7 @@
   function _recaptchaResponse(form) {
     var box = form.querySelector('.g-recaptcha');
     if (box && typeof grecaptcha !== 'undefined') {
-      var elId = box.id || box.getAttribute('data-g-recaptcha-id') || '';
-      var response = grecaptcha.getResponse(elId);
-      if (response && response.length > 0) return response;
-      /* try to find the widget by iterating render ids */
-      try { return grecaptcha.getResponse(); } catch (_) { return ''; }
+      try { return grecaptcha.getResponse() || ''; } catch (_) { return ''; }
     }
     return '';
   }
