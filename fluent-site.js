@@ -2,7 +2,7 @@
    Existing Apps Script endpoint and item field names are preserved.
    Google Analytics Measurement ID: G-5BRGLBH1L2
    No API keys or client-side credential storage.
-   reCAPTCHA v2 public site key: 6Le6QBAuAAAAHNGZa4r2cRVvcGDBhK7aPOudrFQ
+   reCAPTCHA v2 public site key: 6LdgKhIuAAAAAMLpCujef6boPybaTmMoXyBWAE2v
    reCAPTCHA is injected as a visible v2 checkbox into both forms. */
 
 (() => {
